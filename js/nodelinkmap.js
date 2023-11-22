@@ -1,3 +1,10 @@
+let margin = {
+        top: 20,
+        left: 50,
+        right: 30,
+        bottom: 35
+      }
+
 const nodesData = [];
 
     // Generate 4 lines of 20 nodes each
@@ -42,8 +49,8 @@ const nodesData = [];
 
     // Create the SVG
     const svg = d3.select("svg"),
-      width = +svg.attr("width"),
-      height = +svg.attr("height");
+    width = 500 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
     // Create nodes
     const nodes = svg.selectAll(".node")

@@ -20,6 +20,9 @@
 
     let mbtaMap = nodelinkmap()
       ("#nodelinkmap", data);
+
+      let mbtaBar = barchart()
+      ("#barchart", data);
   });
 
 })());
