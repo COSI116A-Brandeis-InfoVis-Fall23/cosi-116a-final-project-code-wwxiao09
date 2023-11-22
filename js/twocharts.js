@@ -41,7 +41,7 @@ const nodesData = [];
         .text(lineLabel);
     }
 
-const margin = { top: 20, right: 30, bottom: 30, left: 40 };
+const margin = { top: 20, right: 30, bottom: 80, left: 40 };
 const plotWidth = (svgWidth / 3) - margin.left - margin.right;
 const height = svgHeight - margin.top - margin.bottom;
 
@@ -70,9 +70,15 @@ const xAxis1 = d3.axisBottom(xScale1);
 const yAxis1 = d3.axisLeft(yScale1);
 
 g1.append("g")
-  .attr("class", "x-axis")
-  .attr("transform", `translate(0,${height})`)
-  .call(xAxis1);
+      .attr("class", "x-axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis1)
+      .selectAll("text")
+      .attr("y", 10) // Adjust label position
+      .attr("x", 9) // Adjust label position
+      .attr("dy", ".35em")
+      .attr("transform", "rotate(45)") // Rotate labels for better readability
+      .style("text-anchor", "start");
 
 g1.append("g")
   .attr("class", "y-axis")
