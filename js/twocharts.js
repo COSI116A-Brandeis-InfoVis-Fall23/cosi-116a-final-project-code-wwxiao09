@@ -235,6 +235,30 @@ g2.append("g")
   .attr("class", "y-axis")
   .call(yAxis2);
 
+  const data = [120, 280, 180, 350]; // Sample data for the bars
+  const barColors = ['blue', 'red', 'orange', 'green']; // Colors for the bars
+  
+  // Create bars
+  g2.selectAll(".bar")
+    .data(data)
+    .enter().append("rect")
+    .attr("class", "bar")
+    .attr("x", (d, i) => xScale2(xLabels2[i]))
+    .attr("y", d => yScale2(d))
+    .attr("width", xScale2.bandwidth() * 0.8) // Adjust the width
+    .attr("height", d => height - yScale2(d))
+    .style("fill", (d, i) => barColors[i]);
+  
+  // Add labels to the bars
+  g2.selectAll(".bar-label")
+    .data(data)
+    .enter().append("text")
+    .attr("class", "bar-label")
+    .attr("x", (d, i) => xScale2(xLabels2[i]) + xScale2.bandwidth() / 2)
+    .attr("y", d => yScale2(d) - 5) // Adjust label position
+    .attr("text-anchor", "middle")
+    .text(d => d);
+
 // Create the third plot (node links)
 const g3 = svg.append("g")
   .attr("transform", `translate(${(plotWidth * 2) + margin.left * 3},${margin.top})`);
