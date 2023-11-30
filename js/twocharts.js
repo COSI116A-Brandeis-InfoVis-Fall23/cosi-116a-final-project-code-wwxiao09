@@ -160,45 +160,36 @@ lines.append("path")
   .style("stroke-width", 1.5);
 
 // Create a table
-const table = svg2.append("g")
-  .attr("class", "table")
-  .attr("transform", `translate(${margin.left},${svgHeight - margin.bottom + 100})`);
 
-// Create one row in the table
-const tableRow = table.append("g");
+let table = d3.select("#table-container") // Select the HTML element to append the table
+  .append("table")
+  .classed("my-table", true);
 
-// Font size and spacing adjustments
-const cellPadding = 70;
-const fontSize = 12;
+// Append rows to the table
+//const rowData = ["Very Early Morning", 'Early AM', 'AM Peak', 'Midday Base', 'Midday School', "PM Peak", "Evening", "Late Evening", "Night"];
+const rowData = xLabels1;
+// Append rows and cells to the table
+const rows = table.selectAll("tr")
+  .data(rowData)
+  .enter().append("tr")
 
-// Append cells to the row corresponding to xLabels1
-const tableCells = tableRow.selectAll("g.cell")
-  .data(xLabels1)
-  .enter().append("g")
-  .attr("class", "cell")
-  .attr("transform", (d, i) => `translate(${i * (plotWidth / xLabels1.length)}, 0)`);
+const row = table.append("tr");
 
-  // Append a rectangle to each cell for styling
-tableCells.append("rect")
-.attr("width", plotWidth / xLabels1.length - cellPadding * 2)
-.attr("height", 25) // Height of the cell
-.style("fill", "#f0f0f0") // Cell background color
-.style("stroke", "#ccc"); // Cell border color
+row.selectAll("td")  
+    .data(rowData)   
+    .enter()          
+    .append("td")     
+    .text(d => d)
+    .on("click", highlightPoints);
 
-// Append text to each cell
-tableCells.append("text")
-  .text(d => d)
-  .attr("x", plotWidth / (xLabels1.length * 2))
-  .attr("y", 20)
-  .style("text-anchor", "middle")
-  .style("font-weight", "bold")
-  .attr("font-size", fontSize)
-  .attr("class", "table-text"); 
+function highlightPoints(label) {
+    table.selectAll("td")
+    .style("background-color", "white");
 
-// Adjust the distance between cells by adding padding
-tableCells.attr("transform", (d, i) => `translate(${i * (plotWidth / xLabels1.length + cellPadding)}, 0)`);
-
-
+    d3.select(this)
+    .style("background-color", "yellow");
+  }
+  
 // Create the second plot
 const g2 = svg.append("g")
   .attr("transform", `translate(${plotWidth + margin.left * 2},${margin.top})`);
