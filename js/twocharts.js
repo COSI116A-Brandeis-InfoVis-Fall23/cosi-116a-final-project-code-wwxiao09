@@ -188,6 +188,20 @@ function highlightPoints(label) {
 
     d3.select(this)
     .style("background-color", "yellow");
+
+    const index = xLabels1.indexOf(label);
+    
+
+    const categoryColor = xLabels1[index];
+
+  // Select all circles in the line chart and update their style
+    g1.selectAll(".dot")
+      .style("fill", function(d, i) {
+        const dataIndex = Math.floor(i / 6);
+        const dotCategory = xLabels1[dataIndex];
+        return dotCategory === categoryColor ? "pink" : "#fff";
+      });
+
   }
   
 // Create the second plot
