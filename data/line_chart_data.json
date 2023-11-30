@@ -1,0 +1,50 @@
+[
+  {
+    "Route_name": "Green Line",
+    "VERY_EARLY_MORNING": 178.375,
+    "MIDDAY_SCHOOL": 2352.0833333333335,
+    "PM_PEAK": 4257.166666666667,
+    "MIDDAY_BASE": 3196.375,
+    "EARLY_AM": 579.5,
+    "AM_PEAK": 2816.375,
+    "EVENING": 2573.2916666666665,
+    "LATE_EVENING": 835.875,
+    "NIGHT": 108
+  },
+  {
+    "Route_name": "Blue Line",
+    "VERY_EARLY_MORNING": 125.5,
+    "EARLY_AM": 277,
+    "AM_PEAK": 689,
+    "MIDDAY_BASE": 1004.5,
+    "PM_PEAK": 2720,
+    "NIGHT": 212.5,
+    "EVENING": 1604,
+    "LATE_EVENING": 1040.5,
+    "MIDDAY_SCHOOL": 1529.5
+  },
+  {
+    "Route_name": "Orange Line",
+    "EARLY_AM": 2264.25,
+    "AM_PEAK": 8668,
+    "MIDDAY_BASE": 7499.5,
+    "EVENING": 4486,
+    "MIDDAY_SCHOOL": 5395.25,
+    "LATE_EVENING": 1183.25,
+    "NIGHT": 150,
+    "PM_PEAK": 10478,
+    "VERY_EARLY_MORNING": 630.25
+  },
+  {
+    "Route_name": "Red Line",
+    "MIDDAY_SCHOOL": 6782,
+    "PM_PEAK": 15286.5,
+    "AM_PEAK": 10254.5,
+    "MIDDAY_BASE": 8485.5,
+    "VERY_EARLY_MORNING": 630,
+    "EARLY_AM": 2586.5,
+    "NIGHT": 218.5,
+    "EVENING": 7538.5,
+    "LATE_EVENING": 1886
+  }
+]

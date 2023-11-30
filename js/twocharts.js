@@ -139,7 +139,6 @@ g1.append("g")
       { x: "Night", y: 90 }
     ]
   ];
-
   // Define line colors
 const lineColors = ["blue", "red", "orange", "green"];
 

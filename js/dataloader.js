@@ -25,8 +25,53 @@ csv()
       });
 
 
-    const jsonData = JSON.stringify(jsonObj, null, 2);
-    fs.writeFileSync('../data/data.json', jsonData);
+      const jsonData = JSON.stringify(jsonObj, null, 2);
+      const parsedData = JSON.parse(jsonData);
+      fs.writeFileSync('../data/data.json', jsonData);
+    function calculateAverages(data) {
+      // Temporary object to hold the sums and counts
+      const tempResult = {};
+  
+      // Sum up the flows and count the entries for each route and time period
+      data.forEach(item => {
+          const route = item.route_name;
+          const timePeriod = item.time_period_name;
+          const flow = parseInt(item.average_flow, 10);
+  
+          if (!tempResult[route]) {
+              tempResult[route] = {};
+          }
+  
+          if (!tempResult[route][timePeriod]) {
+              tempResult[route][timePeriod] = { totalFlow: 0, count: 0 };
+          }
+  
+          tempResult[route][timePeriod].totalFlow += flow;
+          tempResult[route][timePeriod].count += 1;
+      });
+  
+      // Final result array
+      const finalResult = [];
+  
+      // Calculate averages and restructure the data
+      for (const route in tempResult) {
+          const routeData = { Route_name: route };
+  
+          for (const timePeriod in tempResult[route]) {
+              const data = tempResult[route][timePeriod];
+              routeData[timePeriod] = data.totalFlow / data.count;
+          }
+  
+          finalResult.push(routeData);
+      }
+  
+      return finalResult;
+  }
+  const averages = calculateAverages(parsedData);
+  const line_chart_data = JSON.stringify(averages, null, 2);
+  fs.writeFileSync('../data/line_chart_data.json', line_chart_data);
+  console.log(averages);
+  
   })
   .catch((err) => {
     console.error(err);
