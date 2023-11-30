@@ -5,8 +5,22 @@ const svgHeight = 400;
 const svgWidth1 = 1200;
 const svgHeight1 = 1200;
 
-// Create the data for the third plot (4 lines of 20 nodes each)
-const nodesData = [];
+fetch('../data/line_chart_data.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok.');
+    }
+    return response.json();
+  })
+  .then(calculated_data => {
+    if (Array.isArray(calculated_data)) {
+      // 'data' contains an array of dictionaries (objects)
+      console.log(calculated_data); // Log the loaded array of dictionaries
+
+      // Use 'data' for further processing
+      // Example: Iterate through the array and access each dictionary
+      
+      const nodesData = [];
     for (let i = 0; i < 4; i++) {
       let lineColor, lineLabel;
       switch (i) {
@@ -62,7 +76,7 @@ const g1 = svg.append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
 const xLabels1 = ["Very Early Morning", 'Early AM', 'AM Peak', 'Midday Base', 'Midday School', "PM Peak", "Evening", "Late Evening", "Night"];
-const yLabels1 = [100, 200, 300, 400, 500, 600, 700];
+const yLabels1 = [500, 1000, 1500, 2000, 2500, 3000];
 
 const xScale1 = d3.scaleBand()
   .domain(xLabels1)
@@ -91,18 +105,20 @@ g1.append("g")
   .attr("class", "y-axis")
   .call(yAxis1);
 
-
+  // const data_calculated = await d3.json('line_chart_data.json');
+  // console.log(data_calculated[0]["Route_name"]);
+  
   const dataLines = [
     [
-      { x: "Very Early Morning", y: 120 },
-      { x: "Early AM", y: 180 },
-      { x: "AM Peak", y: 220 },
-      { x: "Midday Base", y: 300 },
-      { x: "Midday School", y: 200 },
-      { x: "PM Peak", y: 450 },
-      { x: "Evening", y: 300 },
-      { x: "Late Evening", y: 180 },
-      { x: "Night", y: 70 }
+      { x: "Very Early Morning", y: calculated_data[1]["VERY_EARLY_MORNING"] },
+      { x: "Early AM", y: calculated_data[1]["EARLY_AM"] },
+      { x: "AM Peak", y: calculated_data[1]["AM_PEAK"] },
+      { x: "Midday Base", y: calculated_data[1]["MIDDAY_BASE"] },
+      { x: "Midday School", y: calculated_data[1]["MIDDAY_SCHOOL"] },
+      { x: "PM Peak", y: calculated_data[1]["PM_PEAK"] },
+      { x: "Evening", y: calculated_data[1]["EVENING"] },
+      { x: "Late Evening", y: calculated_data[1]["LATE_EVENING"] },
+      { x: "Night", y: calculated_data[1]["NIGHT"] }
 
     ],
     [
@@ -310,3 +326,17 @@ const nodes = g3.selectAll(".node")
 
 // Create the time table
 
+
+
+
+    } else {
+      console.error('Invalid data format:', data);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
+//console.log(calculated_data["Blue Line"]["VERY_EARLY_MORNING"]);
+// Create the data for the third plot (4 lines of 20 nodes each)
