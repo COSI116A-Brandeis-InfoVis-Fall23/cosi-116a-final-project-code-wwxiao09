@@ -61,7 +61,7 @@ const svg = d3.select("#chart")
 const g1 = svg.append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
-const xLabels1 = ["Very Early Morning", "Early Morning", "Noon", "Afternoon", "Evening", "Late Night"];
+const xLabels1 = ["Very Early Morning", 'Early AM', 'AM Peak', 'Midday Base', 'Midday School', "PM Peak", "Evening", "Late Evening", "Night"];
 const yLabels1 = [100, 200, 300, 400, 500, 600, 700];
 
 const xScale1 = d3.scaleBand()
@@ -95,35 +95,48 @@ g1.append("g")
   const dataLines = [
     [
       { x: "Very Early Morning", y: 120 },
-      { x: "Early Morning", y: 180 },
-      { x: "Noon", y: 220 },
-      { x: "Afternoon", y: 300 },
-      { x: "Evening", y: 280 },
-      { x: "Late Night", y: 200 }
+      { x: "Early AM", y: 180 },
+      { x: "AM Peak", y: 220 },
+      { x: "Midday Base", y: 300 },
+      { x: "Midday School", y: 200 },
+      { x: "PM Peak", y: 450 },
+      { x: "Evening", y: 300 },
+      { x: "Late Evening", y: 180 },
+      { x: "Night", y: 70 }
+
     ],
     [
       { x: "Very Early Morning", y: 200 },
-      { x: "Early Morning", y: 250 },
-      { x: "Noon", y: 300 },
-      { x: "Afternoon", y: 350 },
+      { x: "Early AM", y: 250 },
+      { x: "AM Peak", y: 560 },
+      { x: "Midday Base", y: 350 },
+      { x: "Midday School", y: 300 },
+      { x: "PM Peak", y: 550 },
       { x: "Evening", y: 400 },
-      { x: "Late Night", y: 280 }
+      { x: "Late Evening", y: 260 },
+      { x: "Night", y: 180 }
     ],
     [
       { x: "Very Early Morning", y: 180 },
-      { x: "Early Morning", y: 220 },
-      { x: "Noon", y: 260 },
-      { x: "Afternoon", y: 320 },
-      { x: "Evening", y: 280 },
-      { x: "Late Night", y: 240 }
+      { x: "Early AM", y: 210 },
+      { x: "AM Peak", y: 440 },
+      { x: "Midday Base", y: 310 },
+      { x: "Midday School", y: 260 },
+      { x: "PM Peak", y: 490 },
+      { x: "Evening", y: 270 },
+      { x: "Late Evening", y: 290 },
+      { x: "Night", y: 170 }
     ],
     [
-      { x: "Very Early Morning", y: 150 },
-      { x: "Early Morning", y: 200 },
-      { x: "Noon", y: 240 },
-      { x: "Afternoon", y: 280 },
-      { x: "Evening", y: 320 },
-      { x: "Late Night", y: 180 }
+      { x: "Very Early Morning", y: 140 },
+      { x: "Early AM", y: 170 },
+      { x: "AM Peak", y: 320 },
+      { x: "Midday Base", y: 270 },
+      { x: "Midday School", y: 180 },
+      { x: "PM Peak", y: 500 },
+      { x: "Evening", y: 310 },
+      { x: "Late Evening", y: 280 },
+      { x: "Night", y: 90 }
     ]
   ];
 

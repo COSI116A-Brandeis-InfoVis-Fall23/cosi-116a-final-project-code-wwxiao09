@@ -125,9 +125,11 @@ h1, h2, h3 {
   #table-container table {
 	border-collapse: collapse;
 	border: 1px solid #000; /* Add a solid black border */
+
   }
   
   #table-container table td {
 	border: 1px solid #000; /* Add a solid black border to table cells */
 	padding: 8px; /* Optional: Add padding to the cells for better spacing */
+	background-color: lightblue;
   }
