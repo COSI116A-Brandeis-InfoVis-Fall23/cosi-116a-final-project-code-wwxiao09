@@ -14,11 +14,8 @@ fetch('../data/line_chart_data.json')
   })
   .then(calculated_data => {
     if (Array.isArray(calculated_data)) {
-      // 'data' contains an array of dictionaries (objects)
-      console.log(calculated_data); // Log the loaded array of dictionaries
 
-      // Use 'data' for further processing
-      // Example: Iterate through the array and access each dictionary
+      console.log(calculated_data); 
       
       const nodesData = [];
     for (let i = 0; i < 4; i++) {
@@ -50,7 +47,7 @@ fetch('../data/line_chart_data.json')
           color: lineColor // Assign color to nodes in the line
         });
       }
-      d3.select("#chart") // Select SVG by ID
+      d3.select("#chart") 
         .append("text")
         .attr("class", "line-label")
         .attr("x", (svgWidth / 3) * 2)
@@ -76,7 +73,7 @@ const g1 = svg.append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
 const xLabels1 = ["Very Early Morning", 'Early AM', 'AM Peak', 'Midday Base', 'Midday School', "PM Peak", "Evening", "Late Evening", "Night"];
-const yLabels1 = [500, 1000, 1500, 2000, 2500, 3000];
+const yLabels1 = [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000];
 
 const xScale1 = d3.scaleBand()
   .domain(xLabels1)
@@ -122,37 +119,37 @@ g1.append("g")
 
     ],
     [
-      { x: "Very Early Morning", y: 200 },
-      { x: "Early AM", y: 250 },
-      { x: "AM Peak", y: 560 },
-      { x: "Midday Base", y: 350 },
-      { x: "Midday School", y: 300 },
-      { x: "PM Peak", y: 550 },
-      { x: "Evening", y: 400 },
-      { x: "Late Evening", y: 260 },
-      { x: "Night", y: 180 }
+      { x: "Very Early Morning", y: calculated_data[3]["VERY_EARLY_MORNING"] },
+      { x: "Early AM", y: calculated_data[3]["EARLY_AM"] },
+      { x: "AM Peak", y: calculated_data[3]["AM_PEAK"] },
+      { x: "Midday Base", y: calculated_data[3]["MIDDAY_BASE"] },
+      { x: "Midday School", y: calculated_data[3]["MIDDAY_SCHOOL"] },
+      { x: "PM Peak", y: calculated_data[3]["PM_PEAK"] },
+      { x: "Evening", y: calculated_data[3]["EVENING"] },
+      { x: "Late Evening", y: calculated_data[3]["LATE_EVENING"] },
+      { x: "Night", y: calculated_data[3]["NIGHT"] }
     ],
     [
-      { x: "Very Early Morning", y: 180 },
-      { x: "Early AM", y: 210 },
-      { x: "AM Peak", y: 440 },
-      { x: "Midday Base", y: 310 },
-      { x: "Midday School", y: 260 },
-      { x: "PM Peak", y: 490 },
-      { x: "Evening", y: 270 },
-      { x: "Late Evening", y: 290 },
-      { x: "Night", y: 170 }
+      { x: "Very Early Morning", y: calculated_data[2]["VERY_EARLY_MORNING"] },
+      { x: "Early AM", y: calculated_data[2]["EARLY_AM"] },
+      { x: "AM Peak", y: calculated_data[2]["AM_PEAK"] },
+      { x: "Midday Base", y: calculated_data[2]["MIDDAY_BASE"] },
+      { x: "Midday School", y: calculated_data[2]["MIDDAY_SCHOOL"] },
+      { x: "PM Peak", y: calculated_data[2]["PM_PEAK"] },
+      { x: "Evening", y: calculated_data[2]["EVENING"] },
+      { x: "Late Evening", y: calculated_data[2]["LATE_EVENING"] },
+      { x: "Night", y: calculated_data[2]["NIGHT"] }
     ],
     [
-      { x: "Very Early Morning", y: 140 },
-      { x: "Early AM", y: 170 },
-      { x: "AM Peak", y: 320 },
-      { x: "Midday Base", y: 270 },
-      { x: "Midday School", y: 180 },
-      { x: "PM Peak", y: 500 },
-      { x: "Evening", y: 310 },
-      { x: "Late Evening", y: 280 },
-      { x: "Night", y: 90 }
+      { x: "Very Early Morning", y: calculated_data[0]["VERY_EARLY_MORNING"] },
+      { x: "Early AM", y: calculated_data[0]["EARLY_AM"] },
+      { x: "AM Peak", y: calculated_data[0]["AM_PEAK"] },
+      { x: "Midday Base", y: calculated_data[0]["MIDDAY_BASE"] },
+      { x: "Midday School", y: calculated_data[0]["MIDDAY_SCHOOL"] },
+      { x: "PM Peak", y: calculated_data[0]["PM_PEAK"] },
+      { x: "Evening", y: calculated_data[0]["EVENING"] },
+      { x: "Late Evening", y: calculated_data[0]["LATE_EVENING"] },
+      { x: "Night", y: calculated_data[0]["NIGHT"] }
     ]
   ];
   // Define line colors
@@ -263,8 +260,8 @@ g2.append("g")
   .attr("class", "y-axis")
   .call(yAxis2);
 
-  const data = [120, 280, 180, 350]; // Sample data for the bars
-  const barColors = ['blue', 'red', 'orange', 'green']; // Colors for the bars
+  const data = [120, 280, 180, 350]; 
+  const barColors = ['blue', 'red', 'orange', 'green']; 
   
   // Create bars
   g2.selectAll(".bar")
@@ -273,7 +270,7 @@ g2.append("g")
     .attr("class", "bar")
     .attr("x", (d, i) => xScale2(xLabels2[i]))
     .attr("y", d => yScale2(d))
-    .attr("width", xScale2.bandwidth() * 0.8) // Adjust the width
+    .attr("width", xScale2.bandwidth() * 0.8) 
     .attr("height", d => height - yScale2(d))
     .style("fill", (d, i) => barColors[i]);
   
@@ -283,7 +280,7 @@ g2.append("g")
     .enter().append("text")
     .attr("class", "bar-label")
     .attr("x", (d, i) => xScale2(xLabels2[i]) + xScale2.bandwidth() / 2)
-    .attr("y", d => yScale2(d) - 5) // Adjust label position
+    .attr("y", d => yScale2(d) - 5) 
     .attr("text-anchor", "middle")
     .text(d => d);
 
@@ -296,14 +293,14 @@ const nodes = g3.selectAll(".node")
       .data(nodesData)
       .enter().append("circle")
       .attr("class", "node")
-      .attr("r", 3) // Node radius
+      .attr("r", 3) 
       .attr("cx", d => d.x)
       .attr("cy", d => d.y)
       .style("fill", d => d.color);
 
     // Add corresponding text labels
     g3.selectAll(".line-label")
-      .data(nodesData.filter((d, i) => i % 20 === 0)) // Label for the first node in each line
+      .data(nodesData.filter((d, i) => i % 20 === 0)) 
       .enter().append("text")
       .attr("class", "line-label")
       .attr("x", (svgWidth / 3) * 2)
