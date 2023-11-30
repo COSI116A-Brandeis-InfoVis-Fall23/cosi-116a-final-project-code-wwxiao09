@@ -2,6 +2,9 @@
 const svgWidth = 1200;
 const svgHeight = 400;
 
+const svgWidth1 = 1200;
+const svgHeight1 = 1200;
+
 // Create the data for the third plot (4 lines of 20 nodes each)
 const nodesData = [];
     for (let i = 0; i < 4; i++) {
@@ -49,6 +52,10 @@ const height = svgHeight - margin.top - margin.bottom;
 const svg = d3.select("#chart")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
+
+  const svg2 = d3.select("#chart")
+  .attr("width", svgWidth1)
+  .attr("height", svgHeight1);
 
 // Create the first plot
 const g1 = svg.append("g")
@@ -141,6 +148,57 @@ lines.append("path")
   .style("fill", "none")
   .style("stroke-width", 2);
 
+  lines.selectAll(".dot")
+  .data(d => d) // Use the data directly for each line
+  .enter().append("circle")
+  .attr("class", "dot")
+  .attr("cx", d => xScale1(d.x) + xScale1.bandwidth() / 2) // Set x position
+  .attr("cy", d => yScale1(d.y)) // Set y position
+  .attr("r", 4) // Set the radius of the dot
+  .style("fill", "#fff") // Set fill color to transparent
+  .style("stroke", "#000") // Set border color to black
+  .style("stroke-width", 1.5);
+
+// Create a table
+const table = svg2.append("g")
+  .attr("class", "table")
+  .attr("transform", `translate(${margin.left},${svgHeight - margin.bottom + 100})`);
+
+// Create one row in the table
+const tableRow = table.append("g");
+
+// Font size and spacing adjustments
+const cellPadding = 70;
+const fontSize = 12;
+
+// Append cells to the row corresponding to xLabels1
+const tableCells = tableRow.selectAll("g.cell")
+  .data(xLabels1)
+  .enter().append("g")
+  .attr("class", "cell")
+  .attr("transform", (d, i) => `translate(${i * (plotWidth / xLabels1.length)}, 0)`);
+
+  // Append a rectangle to each cell for styling
+tableCells.append("rect")
+.attr("width", plotWidth / xLabels1.length - cellPadding * 2)
+.attr("height", 25) // Height of the cell
+.style("fill", "#f0f0f0") // Cell background color
+.style("stroke", "#ccc"); // Cell border color
+
+// Append text to each cell
+tableCells.append("text")
+  .text(d => d)
+  .attr("x", plotWidth / (xLabels1.length * 2))
+  .attr("y", 20)
+  .style("text-anchor", "middle")
+  .style("font-weight", "bold")
+  .attr("font-size", fontSize)
+  .attr("class", "table-text"); 
+
+// Adjust the distance between cells by adding padding
+tableCells.attr("transform", (d, i) => `translate(${i * (plotWidth / xLabels1.length + cellPadding)}, 0)`);
+
+
 // Create the second plot
 const g2 = svg.append("g")
   .attr("transform", `translate(${plotWidth + margin.left * 2},${margin.top})`);
@@ -204,3 +262,7 @@ const nodes = g3.selectAll(".node")
             return "";
         }
       });
+
+
+// Create the time table
+

@@ -105,3 +105,19 @@ h1, h2, h3 {
 	font-family: sans-serif;
 	font-size: 11px;
   }
+
+  .table {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	fill: #333; /* Text color */
+  }
+  
+  .cell text {
+	font-weight: bold;
+	text-anchor: middle;
+  }
+  
+  .cell rect {
+	fill: #f0f0f0; /* Cell background color */
+	stroke: #ccc; /* Cell border color */
+  }
