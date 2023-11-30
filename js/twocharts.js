@@ -84,6 +84,63 @@ g1.append("g")
   .attr("class", "y-axis")
   .call(yAxis1);
 
+
+  const dataLines = [
+    [
+      { x: "Very Early Morning", y: 120 },
+      { x: "Early Morning", y: 180 },
+      { x: "Noon", y: 220 },
+      { x: "Afternoon", y: 300 },
+      { x: "Evening", y: 280 },
+      { x: "Late Night", y: 200 }
+    ],
+    [
+      { x: "Very Early Morning", y: 200 },
+      { x: "Early Morning", y: 250 },
+      { x: "Noon", y: 300 },
+      { x: "Afternoon", y: 350 },
+      { x: "Evening", y: 400 },
+      { x: "Late Night", y: 280 }
+    ],
+    [
+      { x: "Very Early Morning", y: 180 },
+      { x: "Early Morning", y: 220 },
+      { x: "Noon", y: 260 },
+      { x: "Afternoon", y: 320 },
+      { x: "Evening", y: 280 },
+      { x: "Late Night", y: 240 }
+    ],
+    [
+      { x: "Very Early Morning", y: 150 },
+      { x: "Early Morning", y: 200 },
+      { x: "Noon", y: 240 },
+      { x: "Afternoon", y: 280 },
+      { x: "Evening", y: 320 },
+      { x: "Late Night", y: 180 }
+    ]
+  ];
+
+  // Define line colors
+const lineColors = ["blue", "red", "orange", "green"];
+
+// Create line generators for each line
+const lineGenerator = d3.line()
+  .x(d => xScale1(d.x) + xScale1.bandwidth() / 2) // Adjust x position for the line
+  .y(d => yScale1(d.y));
+
+// Append the lines to the SVG
+const lines = g1.selectAll(".line")
+  .data(dataLines)
+  .enter().append("g")
+  .attr("class", "line-group");
+
+lines.append("path")
+  .attr("class", "line")
+  .attr("d", d => lineGenerator(d))
+  .style("stroke", (d, i) => lineColors[i])
+  .style("fill", "none")
+  .style("stroke-width", 2);
+
 // Create the second plot
 const g2 = svg.append("g")
   .attr("transform", `translate(${plotWidth + margin.left * 2},${margin.top})`);
