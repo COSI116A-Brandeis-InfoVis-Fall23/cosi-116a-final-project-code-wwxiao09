@@ -149,19 +149,19 @@ lines.append("path")
   .style("stroke-width", 2);
 
   lines.selectAll(".dot")
-  .data(d => d) // Use the data directly for each line
+  .data(d => d) 
   .enter().append("circle")
   .attr("class", "dot")
-  .attr("cx", d => xScale1(d.x) + xScale1.bandwidth() / 2) // Set x position
-  .attr("cy", d => yScale1(d.y)) // Set y position
-  .attr("r", 4) // Set the radius of the dot
-  .style("fill", "#fff") // Set fill color to transparent
-  .style("stroke", "#000") // Set border color to black
+  .attr("cx", d => xScale1(d.x) + xScale1.bandwidth() / 2) 
+  .attr("cy", d => yScale1(d.y)) 
+  .attr("r", 4) 
+  .style("fill", "#fff") 
+  .style("stroke", "#000") 
   .style("stroke-width", 1.5);
 
 // Create a table
 
-let table = d3.select("#table-container") // Select the HTML element to append the table
+let table = d3.select("#table-container") 
   .append("table")
   .classed("my-table", true);
 
@@ -184,23 +184,26 @@ row.selectAll("td")
 
 function highlightPoints(label) {
     table.selectAll("td")
-    .style("background-color", "white");
+    .style("background-color", "lightblue");
 
     d3.select(this)
     .style("background-color", "yellow");
 
     const index = xLabels1.indexOf(label);
     
-
     const categoryColor = xLabels1[index];
 
-  // Select all circles in the line chart and update their style
     g1.selectAll(".dot")
-      .style("fill", function(d, i) {
-        const dataIndex = Math.floor(i / 6);
-        const dotCategory = xLabels1[dataIndex];
-        return dotCategory === categoryColor ? "pink" : "#fff";
+        .style("fill", d => d.color === categoryColor ? "pink" : "#fff");
+    
+    dataLines.forEach((line, lineIndex) => {
+      line.forEach(dot => {
+        if (dot.x === label) {
+          g1.select(`.line-group:nth-child(${lineIndex+3}) .dot:nth-child(${line.indexOf(dot)+2})`)
+            .style("fill", "pink");
+        }
       });
+    });
 
   }
   
