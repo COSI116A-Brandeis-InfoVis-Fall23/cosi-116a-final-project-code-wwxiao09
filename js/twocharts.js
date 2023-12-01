@@ -233,11 +233,26 @@ function highlightPoints(label) {
   }
   
 // Create the second plot
+
 const g2 = svg.append("g")
   .attr("transform", `translate(${plotWidth + margin.left * 2},${margin.top})`);
+  const average_array = [];
+
+  calculated_data.forEach(data => {
+    let sum = 0;
+    let count = 0;
+    for (let key in data) {
+      if (key !== 'Route_name') { // Assuming 'Route_name' is not part of the sum
+        sum += data[key];
+        count += 1;
+      }
+    }
+    const average = (sum/count).toFixed(2);
+    average_array.push(average);
+  });
 
 const xLabels2 = ["blue line", "red line", "orange line", "green line"];
-const yLabels2 = [100, 200, 300, 400, 500, 600, 700];
+const yLabels2 = [1000,2000,3000,4000,5000,6000,7000,8000];
 
 const xScale2 = d3.scaleBand()
   .domain(xLabels2)
@@ -260,7 +275,7 @@ g2.append("g")
   .attr("class", "y-axis")
   .call(yAxis2);
 
-  const data = [120, 280, 180, 350]; 
+  const data = [average_array[1], average_array[3], average_array[2], average_array[0]]; 
   const barColors = ['blue', 'red', 'orange', 'green']; 
   
   // Create bars

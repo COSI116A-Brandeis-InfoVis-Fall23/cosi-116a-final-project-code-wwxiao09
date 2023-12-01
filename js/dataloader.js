@@ -66,10 +66,39 @@ csv()
       }
   
       return finalResult;
+   }
+   function calculateOverallAverages(data) {
+    var overallAverages = {};
+    data.forEach(function(entry) {
+      var routeName = entry.Route_name;
+      overallAverages[routeName] = {
+        totalSum: 0,
+        totalCount: 0
+      };
+      Object.keys(entry).forEach(function(period) {
+        if (period !== 'Route_name') {
+          overallAverages[routeName].totalSum += entry[period];
+          overallAverages[routeName].totalCount++;
+        }
+      });
+    });
+  
+    // Calculate the overall average for each route
+    Object.keys(overallAverages).forEach(function(route) {
+      var totalSum = overallAverages[route].totalSum;
+      var totalCount = overallAverages[route].totalCount;
+      overallAverages[route] = totalSum / totalCount;
+    });
+    return overallAverages;
   }
+  
+  // Load the JSON data and calculate averages
   const averages = calculateAverages(parsedData);
+  const bar_averages=calculateOverallAverages(averages)
   const line_chart_data = JSON.stringify(averages, null, 2);
+  const bar_chart_data = JSON.stringify(bar_averages, null, 2);
   fs.writeFileSync('../data/line_chart_data.json', line_chart_data);
+  fs.writeFileSync('../data/bar_chart_data.json', bar_chart_data);
   console.log(averages);
   
   })
