@@ -219,13 +219,13 @@ function highlightPoints(label) {
     const categoryColor = xLabels1[index];
 
     g1.selectAll(".dot")
-        .style("fill", d => d.color === categoryColor ? "yellow" : "#fff");
+        .style("fill", d => d.color === categoryColor ? "red" : "#fff");
     
     dataLines.forEach((line, lineIndex) => {
       line.forEach(dot => {
         if (dot.x === label) {
           g1.select(`.line-group:nth-child(${lineIndex+3}) .dot:nth-child(${line.indexOf(dot)+2})`)
-            .style("fill", "yellow");
+            .style("fill", "red");
         }
       });
     });
