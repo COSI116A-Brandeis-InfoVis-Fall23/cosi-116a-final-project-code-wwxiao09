@@ -269,6 +269,8 @@ g1.append("g")
   
       // Reset dot colors
       g1.selectAll(".dot").style("fill", "#fff");
+      const updated_average_array = updateBarChartData(xLabels1, calculated_data);
+      updateBarChart(updated_average_array, g2, yScale2, height, barColors);
       return;
     }
   
