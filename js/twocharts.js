@@ -245,27 +245,7 @@ function highlightPoints(label) {
 
 
   // Update g2 based on the updated_average_array
-  const updatedData = [
-    updated_average_array[1],
-    updated_average_array[3],
-    updated_average_array[2],
-    updated_average_array[0]
-  ];
-
-  g2.selectAll(".bar")
-    .data(updatedData)
-    .transition()
-    .duration(500) // Add transition for a smooth update effect
-    .attr("y", d => yScale2(d))
-    .attr("height", d => height - yScale2(d))
-    .style("fill", (d, i) => barColors[i]);
-
-  g2.selectAll(".bar-label")
-    .data(updatedData)
-    .transition()
-    .duration(500) // Add transition for a smooth update effect
-    .attr("y", d => yScale2(d) - 5)
-    .text(d => d);
+  updateBarChart(updated_average_array, g2, yScale2, height, barColors);
 
   }
 
@@ -314,6 +294,12 @@ g1.append("g")
       .style("background-color", d =>
         selectedXValues.includes(d) ? "yellow" : "lightblue"
       );
+    
+    console.log(selectedXValues);
+
+    const updated_average_array = updateBarChartData(getSelectedTimePeriod(selectedXValues), calculated_data);
+    updateBarChart(updated_average_array, g2, yScale2, height, barColors);
+
   }
   
 
@@ -428,3 +414,65 @@ g2.append("g")
   .catch(error => {
     console.error('Error:', error);
   });
+
+
+
+  function getSelectedTimePeriod(selectedXValues) {
+    const selected = new Set();
+  
+    selectedXValues.forEach(selectedX => {
+      selected.add(selectedX); 
+    });
+  
+    return selected;
+  }
+
+  function updateBarChartData(selectedTime, data) {
+
+    console.log("selectedTime", selectedTime);
+    const updatedData = [];
+  
+    data.forEach(dictionary => {
+      let sum = 0;
+      let count = 0;
+      console.log(dictionary);
+      // Iterate through each key-value pair in the dictionary
+      console.log('yes');
+      for (const key of selectedTime) {
+        console.log(key);
+        sum += dictionary[key.toUpperCase().split(' ').join('_')];
+        count++;
+      }
+  
+      // Calculate the average for the selected keys in the dictionary
+      const average = count > 0 ? sum / count : 0;
+      updatedData.push(average);
+    });
+  
+    return updatedData;
+  }
+  
+  function updateBarChart(data, g, yScale, height, barColors){
+    const updatedData = [
+      data[1],
+      data[3],
+      data[2],
+      data[0]
+    ];
+  
+    g.selectAll(".bar")
+      .data(updatedData)
+      .transition()
+      .duration(500) // Add transition for a smooth update effect
+      .attr("y", d => yScale(d))
+      .attr("height", d => height - yScale(d))
+      .style("fill", (d, i) => barColors[i]);
+  
+    g.selectAll(".bar-label")
+      .data(updatedData)
+      .transition()
+      .duration(500) // Add transition for a smooth update effect
+      .attr("y", d => yScale(d) - 5)
+      .text(d => d);
+
+  }
