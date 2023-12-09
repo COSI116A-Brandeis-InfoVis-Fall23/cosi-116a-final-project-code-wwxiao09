@@ -319,7 +319,7 @@ const g2 = svg.append("g")
         count += 1;
       }
     }
-    const average = (sum/count).toFixed(2);
+    const average = Math.round(sum/count);
     average_array.push(average);
   });
 
@@ -454,10 +454,10 @@ g2.append("g")
   
   function updateBarChart(data, g, yScale, height, barColors){
     const updatedData = [
-      data[1],
-      data[3],
-      data[2],
-      data[0]
+      Math.round(data[1]),
+      Math.round(data[3]),
+      Math.round(data[2]),
+      Math.round(data[0])
     ];
   
     g.selectAll(".bar")
