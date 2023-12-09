@@ -242,6 +242,8 @@ function highlightPoints(label) {
 
 
 
+
+
   // Update g2 based on the updated_average_array
   const updatedData = [
     updated_average_array[1],
@@ -266,6 +268,55 @@ function highlightPoints(label) {
     .text(d => d);
 
   }
+
+
+// Create a brush
+const brush = d3.brushX()
+  .extent([[0, 0], [plotWidth, height]])
+  .on("end", brushed); // Define what happens on brush end
+
+// Append the brush to the chart
+g1.append("g")
+  .attr("class", "brush")
+  .call(brush);
+
+  function brushed() {
+    const selection = d3.event.selection;
+  
+    if (!selection) {
+      // Reset table if no selection
+      table.selectAll("td").style("background-color", "lightblue");
+  
+      // Reset dot colors
+      g1.selectAll(".dot").style("fill", "#fff");
+      return;
+    }
+  
+    // Get the selected dots based on the x-axis position
+    const selectedXValues = [];
+  
+    g1.selectAll(".dot")
+      .each(function(d) {
+        const dotX = +d3.select(this).attr("cx");
+        if (dotX >= selection[0] && dotX <= selection[1]) {
+          selectedXValues.push(d.x);
+  
+          // Change selected dots color to red
+          d3.select(this).style("fill", "red");
+        }else {
+          // Reset non-selected dots to their original color
+          d3.select(this).style("fill", "#fff");
+        }
+      });
+  
+    // Highlight corresponding table entries
+    table.selectAll("td")
+      .style("background-color", d =>
+        selectedXValues.includes(d) ? "yellow" : "lightblue"
+      );
+  }
+  
+
   
 // Create the second plot
 
@@ -370,12 +421,6 @@ g2.append("g")
 //         }
 //       });
 
-
-
-
-
-
-
     } else {
       console.error('Invalid data format:', data);
     }
@@ -383,7 +428,3 @@ g2.append("g")
   .catch(error => {
     console.error('Error:', error);
   });
-
-
-//console.log(calculated_data["Blue Line"]["VERY_EARLY_MORNING"]);
-// Create the data for the third plot (4 lines of 20 nodes each)
