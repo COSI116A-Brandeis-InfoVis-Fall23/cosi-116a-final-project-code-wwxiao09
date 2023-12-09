@@ -18,42 +18,42 @@ fetch('../data/line_chart_data.json')
       console.log(calculated_data); 
       
       const nodesData = [];
-    for (let i = 0; i < 4; i++) {
-      let lineColor, lineLabel;
-      switch (i) {
-        case 0:
-          lineColor = "red";
-          lineLabel = "Red Line";
-          break;
-        case 1:
-          lineColor = "blue";
-          lineLabel = "Blue Line";
-          break;
-        case 2:
-          lineColor = "green";
-          lineLabel = "Green Line";
-          break;
-        case 3:
-          lineColor = "orange";
-          lineLabel = "Orange Line";
-          break;
-      }
+    // for (let i = 0; i < 4; i++) {
+    //   let lineColor, lineLabel;
+    //   switch (i) {
+    //     case 0:
+    //       lineColor = "red";
+    //       lineLabel = "Red Line";
+    //       break;
+    //     case 1:
+    //       lineColor = "blue";
+    //       lineLabel = "Blue Line";
+    //       break;
+    //     case 2:
+    //       lineColor = "green";
+    //       lineLabel = "Green Line";
+    //       break;
+    //     case 3:
+    //       lineColor = "orange";
+    //       lineLabel = "Orange Line";
+    //       break;
+    //   }
 
-      for (let j = 0; j < 20; j++) {
-        nodesData.push({
-          x: 50 + j * 25, // Adjust x position based on index
-          y: 50 + i * 100, // Adjust y position for each line
-          id: i * 20 + j + 1, // Assign a unique ID to each node
-          color: lineColor // Assign color to nodes in the line
-        });
-      }
-      d3.select("#chart") 
-        .append("text")
-        .attr("class", "line-label")
-        .attr("x", (svgWidth / 3) * 2)
-        .attr("y", 50 + i * 100)
-        .text(lineLabel);
-    }
+    //   for (let j = 0; j < 20; j++) {
+    //     nodesData.push({
+    //       x: 50 + j * 25, // Adjust x position based on index
+    //       y: 50 + i * 100, // Adjust y position for each line
+    //       id: i * 20 + j + 1, // Assign a unique ID to each node
+    //       color: lineColor // Assign color to nodes in the line
+    //     });
+    //   }
+    //   d3.select("#chart") 
+    //     .append("text")
+    //     .attr("class", "line-label")
+    //     .attr("x", (svgWidth / 3) * 2)
+    //     .attr("y", 50 + i * 100)
+    //     .text(lineLabel);
+    // }
 
 const margin = { top: 20, right: 30, bottom: 80, left: 40 };
 const plotWidth = (svgWidth / 3) - margin.left - margin.right;
@@ -191,7 +191,6 @@ let table = d3.select("#table-container")
   .classed("my-table", true);
 
 // Append rows to the table
-//const rowData = ["Very Early Morning", 'Early AM', 'AM Peak', 'Midday Base', 'Midday School', "PM Peak", "Evening", "Late Evening", "Night"];
 const rowData = xLabels1;
 // Append rows and cells to the table
 const rows = table.selectAll("tr")
@@ -230,6 +229,42 @@ function highlightPoints(label) {
       });
     });
 
+    const updated_average_array = [];
+
+  calculated_data.forEach(data => {
+    // Assuming label is the key you want to access in each dictionary
+    const valueForLabel = data[label.toUpperCase().split(' ').join('_')]; // Accessing the value for the provided label key
+    updated_average_array.push(valueForLabel);
+  });
+  console.log("this is updated array");
+  console.log(label);
+  console.log(updated_average_array);
+
+
+
+  // Update g2 based on the updated_average_array
+  const updatedData = [
+    updated_average_array[1],
+    updated_average_array[3],
+    updated_average_array[2],
+    updated_average_array[0]
+  ];
+
+  g2.selectAll(".bar")
+    .data(updatedData)
+    .transition()
+    .duration(500) // Add transition for a smooth update effect
+    .attr("y", d => yScale2(d))
+    .attr("height", d => height - yScale2(d))
+    .style("fill", (d, i) => barColors[i]);
+
+  g2.selectAll(".bar-label")
+    .data(updatedData)
+    .transition()
+    .duration(500) // Add transition for a smooth update effect
+    .attr("y", d => yScale2(d) - 5)
+    .text(d => d);
+
   }
   
 // Create the second plot
@@ -252,7 +287,7 @@ const g2 = svg.append("g")
   });
 
 const xLabels2 = ["blue line", "red line", "orange line", "green line"];
-const yLabels2 = [1000,2000,3000,4000,5000,6000,7000,8000];
+const yLabels2 = yLabels1;
 
 const xScale2 = d3.scaleBand()
   .domain(xLabels2)
@@ -300,43 +335,43 @@ g2.append("g")
     .text(d => d);
 
 // Create the third plot (node links)
-const g3 = svg.append("g")
-  .attr("transform", `translate(${(plotWidth * 2) + margin.left * 3},${margin.top})`);
+// const g3 = svg.append("g")
+//   .attr("transform", `translate(${(plotWidth * 2) + margin.left * 3},${margin.top})`);
 
 // Create nodes for the third plot
-const nodes = g3.selectAll(".node")
-      .data(nodesData)
-      .enter().append("circle")
-      .attr("class", "node")
-      .attr("r", 3) 
-      .attr("cx", d => d.x)
-      .attr("cy", d => d.y)
-      .style("fill", d => d.color);
+// const nodes = g3.selectAll(".node")
+//       .data(nodesData)
+//       .enter().append("circle")
+//       .attr("class", "node")
+//       .attr("r", 3) 
+//       .attr("cx", d => d.x)
+//       .attr("cy", d => d.y)
+//       .style("fill", d => d.color);
 
-    // Add corresponding text labels
-    g3.selectAll(".line-label")
-      .data(nodesData.filter((d, i) => i % 20 === 0)) 
-      .enter().append("text")
-      .attr("class", "line-label")
-      .attr("x", (svgWidth / 3) * 2)
-      .attr("y", d => d.y)
-      .text(d => {
-        switch (d.color) {
-          case "red":
-            return "Red Line";
-          case "blue":
-            return "Blue Line";
-          case "green":
-            return "Green Line";
-          case "orange":
-            return "Orange Line";
-          default:
-            return "";
-        }
-      });
+//     // Add corresponding text labels
+//     g3.selectAll(".line-label")
+//       .data(nodesData.filter((d, i) => i % 20 === 0)) 
+//       .enter().append("text")
+//       .attr("class", "line-label")
+//       .attr("x", (svgWidth / 3) * 2)
+//       .attr("y", d => d.y)
+//       .text(d => {
+//         switch (d.color) {
+//           case "red":
+//             return "Red Line";
+//           case "blue":
+//             return "Blue Line";
+//           case "green":
+//             return "Green Line";
+//           case "orange":
+//             return "Orange Line";
+//           default:
+//             return "";
+//         }
+//       });
 
 
-// Create the time table
+
 
 
 
