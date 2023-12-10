@@ -2,7 +2,7 @@
 const svgWidth = 1200;
 const svgHeight = 400;
 
-const svgWidth1 = 1200;
+const svgWidth1 = 1400;
 const svgHeight1 = 1200;
 
 fetch('../data/line_chart_data.json')
