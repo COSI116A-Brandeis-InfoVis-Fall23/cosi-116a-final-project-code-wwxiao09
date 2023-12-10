@@ -215,7 +215,6 @@ lines.append("path")
 let table = d3.select("#table-container") 
   .append("table")
   .classed("my-table", true)
-  .style("margin-left", "220px");
 
 // Append rows to the table
 const rowData = xLabels1;
