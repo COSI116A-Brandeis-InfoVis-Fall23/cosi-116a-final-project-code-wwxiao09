@@ -331,6 +331,7 @@ const svgHeight1 = 500;
     // Attach mousedown event to table cells for starting the brushing
     table.selectAll("td")
     .on("mousedown", function(d) {
+      g1.select(".brush").call(brush.move, null);
       isBrushing = true;
       selectedValues = []; // Reset selected values on starting a new brush
 
