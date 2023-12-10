@@ -70,7 +70,7 @@ const svg = d3.select("#chart")
 
 // Create the first plot
 const g1 = svg.append("g")
-  .attr("transform", `translate(${margin.left},${margin.top})`);
+  .attr("transform", `translate(${margin.left + 50},${margin.top + 50})`);
 
 const xLabels1 = ["Very Early Morning", 'Early AM', 'AM Peak', 'Midday Base', 'Midday School', "PM Peak", "Evening", "Late Evening", "Night"];
 const yLabels1 = [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000];
@@ -101,6 +101,30 @@ g1.append("g")
 g1.append("g")
   .attr("class", "y-axis")
   .call(yAxis1);
+
+// X Axis Label
+g1.append("text")
+  .attr("transform", "translate(" + (margin.left + plotWidth / 2 - 20) + " ," + (svgHeight - margin.bottom / 3 + 30) + ")")
+  .style("text-anchor", "middle")
+  .text("Different Time Periods of the Day");
+
+// Y Axis Label
+g1.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", margin.left / 5 - 60)
+  .attr("x", 0 - (svgHeight / 2))
+  .style("text-anchor", "middle")
+  .text("Average Passenger Flow");
+
+  // title
+  g1.append("text")
+  .attr("x", (svgWidth / 6))
+  .attr("y", margin.top / 2 - 45)
+  .attr("text-anchor", "middle")
+  .style("font-size", "16px")
+  .style("font-weight", "bold")
+  .text("Average Passenger Flow Throughout the Day");
+
 
   // const data_calculated = await d3.json('line_chart_data.json');
   // console.log(data_calculated[0]["Route_name"]);
@@ -377,7 +401,7 @@ g1.append("g")
 // Create the second plot
 
 const g2 = svg.append("g")
-  .attr("transform", `translate(${plotWidth + margin.left * 2},${margin.top})`);
+  .attr("transform", `translate(${plotWidth + margin.left * 2 + 200},${margin.top + 50})`);
   const average_array = [];
 
   calculated_data.forEach(data => {
@@ -416,6 +440,29 @@ g2.append("g")
 g2.append("g")
   .attr("class", "y-axis")
   .call(yAxis2);
+
+// X Axis Label
+g2.append("text")
+  .attr("transform", "translate(" + (margin.left + plotWidth / 2 - 20) + " ," + (svgHeight - margin.bottom / 3 + 30) + ")")
+  .style("text-anchor", "middle")
+  .text("Four MBTA Lines");
+
+// Y Axis Label
+g2.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", margin.left / 5 - 60)
+  .attr("x", 0 - (svgHeight / 2))
+  .style("text-anchor", "middle")
+  .text("Average Passenger Flow");
+
+  // title
+  g2.append("text")
+  .attr("x", (svgWidth / 6))
+  .attr("y", margin.top / 2 - 45)
+  .attr("text-anchor", "middle")
+  .style("font-size", "16px")
+  .style("font-weight", "bold")
+  .text("Average Passenger Flow For the Selected Time Period(s)");
 
   const data = [average_array[1], average_array[3], average_array[2], average_array[0]]; 
   const barColors = ['blue', 'red', 'orange', 'green']; 
