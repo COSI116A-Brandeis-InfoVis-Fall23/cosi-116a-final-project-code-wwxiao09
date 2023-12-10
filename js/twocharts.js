@@ -247,7 +247,7 @@ function highlightPoints(label) {
     dataLines.forEach((line, lineIndex) => {
       line.forEach(dot => {
         if (dot.x === label) {
-          g1.select(`.line-group:nth-child(${lineIndex+3}) .dot:nth-child(${line.indexOf(dot)+2})`)
+          g1.select(`.line-group:nth-child(${lineIndex+6}) .dot:nth-child(${line.indexOf(dot)+2})`)
             .style("fill", "red");
         }
       });
