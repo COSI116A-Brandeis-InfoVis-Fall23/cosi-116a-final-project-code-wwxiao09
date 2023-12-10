@@ -210,6 +210,29 @@ lines.append("path")
   .style("stroke", "#000") 
   .style("stroke-width", 1.5);
 
+// Add Legend
+  const legend = svg.append("g")
+  .attr("class", "legend")
+  .attr("transform", `translate(${plotWidth + margin.left * 5},${margin.top + 50})`);
+
+  // Add colored lines and corresponding labels to the legend
+  lineColors.forEach((color, i) => {
+    legend.append("line")
+      .attr("x1", 0)
+      .attr("y1", i * 30)
+      .attr("x2", 20)
+      .attr("y2", i * 30)
+      .attr("stroke", color)
+      .style("stroke-width", 2);
+
+    legend.append("text")
+      .attr("x", 30)
+      .attr("y", i * 30)
+      .attr("dy", "0.35em")
+      .text(`${color.charAt(0).toUpperCase() + color.slice(1)} Line`)
+      .style("font-size", "14px");
+  });
+
 // Create a table
 
 let table = d3.select("#table-container") 
