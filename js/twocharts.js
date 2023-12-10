@@ -70,7 +70,7 @@ const svg = d3.select("#chart")
 
 // Create the first plot
 const g1 = svg.append("g")
-  .attr("transform", `translate(${margin.left + 50},${margin.top + 50})`);
+  .attr("transform", `translate(${margin.left + 200},${margin.top + 50})`);
 
 const xLabels1 = ["Very Early Morning", 'Early AM', 'AM Peak', 'Midday Base', 'Midday School', "PM Peak", "Evening", "Late Evening", "Night"];
 const yLabels1 = [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000];
@@ -94,13 +94,15 @@ g1.append("g")
       .selectAll("text")
       .attr("y", 10) // Adjust label position
       .attr("x", 9) // Adjust label position
-      .attr("dy", ".35em")
+      .attr("dy", ".5em")
       .attr("transform", "rotate(45)") // Rotate labels for better readability
-      .style("text-anchor", "start");
+      .style("text-anchor", "start")
+      .style("font-size", "11px");
 
 g1.append("g")
   .attr("class", "y-axis")
-  .call(yAxis1);
+  .call(yAxis1)
+  .style("font-size", "12px");
 
 // X Axis Label
 g1.append("text")
@@ -111,8 +113,8 @@ g1.append("text")
 // Y Axis Label
 g1.append("text")
   .attr("transform", "rotate(-90)")
-  .attr("y", margin.left / 5 - 60)
-  .attr("x", 0 - (svgHeight / 2))
+  .attr("y", margin.left / 5 - 70)
+  .attr("x", 0 - (svgHeight / 2) + 40)
   .style("text-anchor", "middle")
   .text("Average Passenger Flow");
 
@@ -212,7 +214,8 @@ lines.append("path")
 
 let table = d3.select("#table-container") 
   .append("table")
-  .classed("my-table", true);
+  .classed("my-table", true)
+  .style("margin-left", "220px");
 
 // Append rows to the table
 const rowData = xLabels1;
@@ -401,7 +404,7 @@ g1.append("g")
 // Create the second plot
 
 const g2 = svg.append("g")
-  .attr("transform", `translate(${plotWidth + margin.left * 2 + 200},${margin.top + 50})`);
+  .attr("transform", `translate(${plotWidth + margin.left * 2 + 400},${margin.top + 50})`);
   const average_array = [];
 
   calculated_data.forEach(data => {
@@ -435,11 +438,13 @@ const yAxis2 = d3.axisLeft(yScale2);
 g2.append("g")
   .attr("class", "x-axis")
   .attr("transform", `translate(0,${height})`)
-  .call(xAxis2);
+  .call(xAxis2)
+  .style("font-size", "15px");
 
 g2.append("g")
   .attr("class", "y-axis")
-  .call(yAxis2);
+  .call(yAxis2)
+  .style("font-size", "12px");
 
 // X Axis Label
 g2.append("text")
@@ -450,8 +455,8 @@ g2.append("text")
 // Y Axis Label
 g2.append("text")
   .attr("transform", "rotate(-90)")
-  .attr("y", margin.left / 5 - 60)
-  .attr("x", 0 - (svgHeight / 2))
+  .attr("y", margin.left / 5 - 70)
+  .attr("x", 0 - (svgHeight / 2) + 40)
   .style("text-anchor", "middle")
   .text("Average Passenger Flow");
 
@@ -486,7 +491,8 @@ g2.append("text")
     .attr("x", (d, i) => xScale2(xLabels2[i]) + xScale2.bandwidth() / 2)
     .attr("y", d => yScale2(d) - 5) 
     .attr("text-anchor", "middle")
-    .text(d => d);
+    .text(d => d)
+    .style("font-size", "14px");
 
 // Create the third plot (node links)
 // const g3 = svg.append("g")
