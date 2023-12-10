@@ -241,9 +241,6 @@ function highlightPoints(label) {
   console.log(updated_average_array);
 
 
-
-
-
   // Update g2 based on the updated_average_array
   updateBarChart(updated_average_array, g2, yScale2, height, barColors);
 
@@ -303,6 +300,77 @@ g1.append("g")
     updateBarChart(updated_average_array, g2, yScale2, height, barColors);
 
   }
+
+
+  let isBrushing = false;
+  let selectedValues = [];
+  
+  // Function to handle table brushing
+  function handleTableBrushing(values) {
+    const updated_average_array = updateBarChartData(values, calculated_data);
+  
+    // Update bar chart based on selected values
+    updateBarChart(updated_average_array, g2, yScale2, height, barColors);
+  
+    // Highlight corresponding dots in the line chart
+    g1.selectAll(".dot")
+      .each(function(d) {
+        const isSelected = values.includes(d.x);
+  
+        // Change dot color based on selection in table
+        d3.select(this).style("fill", isSelected ? "red" : "#fff");
+      });
+  
+    // Highlight corresponding table entries
+    table.selectAll("td")
+      .style("background-color", d =>
+        values.includes(d) ? "yellow" : "lightblue"
+      );
+  }
+ // Attach mousedown event to table cells for starting the brushing
+ table.selectAll("td")
+ .on("mousedown", function(d) {
+   isBrushing = true;
+   selectedValues = []; // Reset selected values on starting a new brush
+
+   table.selectAll("td").style("background-color", "lightblue");
+
+   // Highlight the cell on mousedown
+   d3.select(this).style("background-color", "yellow");
+
+   // Store the value of the cell for brushing
+   selectedValues.push(d);
+
+   // Prevent text selection during brushing
+   d3.event.preventDefault();
+ });
+  // Attach mousemove event for brushing while dragging over cells
+  table.selectAll("td")
+    .on("mousemove", function(d) {
+      if (isBrushing) {
+        // Highlight the cell on mousemove within the table
+        d3.select(this).style("background-color", "yellow");
+  
+        // Store the value of the cell for brushing
+        if (!selectedValues.includes(d)) {
+          selectedValues.push(d);
+        }
+  
+        // Prevent text selection during brushing
+        d3.event.preventDefault();
+      }
+    });
+  
+  // Attach mouseup event to stop the brushing and trigger the handleTableBrushing function
+  d3.select("body")
+    .on("mouseup", function() {
+      if (isBrushing) {
+        isBrushing = false;
+  
+        // Handle the selection in the table after brushing ends
+        handleTableBrushing(selectedValues);
+      }
+    });
   
 
   
