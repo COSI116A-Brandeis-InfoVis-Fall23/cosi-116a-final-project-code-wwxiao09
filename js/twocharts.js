@@ -145,38 +145,19 @@
       lines.selectAll(".dot")
         .data(d => d) 
         .enter().append("circle")
+        .on("click", clicked)
         .attr("class", "dot")
         .attr("cx", d => xScale1(d.x) + xScale1.bandwidth() / 2) 
         .attr("cy", d => yScale1(d.y)) 
         .attr("r", 4) 
         .style("fill", "#fff") 
         .style("stroke", "#000") 
-        .style("stroke-width", 1.5)
-        .on("click", clickToSeeDetails);
-  
-
-    function clickToSeeDetails(event, d){
-      console.log("clicked event is listened");
-      d3.selectAll(".dot").style("fill", "#fff");
-      
-          // Highlight the clicked circle
-          d3.select(this).style("fill", "red");
-      
-          // You can perform other actions on click if needed
-          // For example, log the clicked data
-          const xValue = d.x;
-          const yValue = d.y;
-          console.log("Clicked circle data:");
-          console.log("X value:", xValue);
-          console.log("Y value:", yValue);
-
-    }
-
-
-
+        .style("stroke-width", 1.5);
       
 
-      
+      function clicked(){
+        console.log("this is clicked event");
+      }
 
     }
 
@@ -247,9 +228,6 @@
         const valueForLabel = data[label.toUpperCase().split(' ').join('_')]; // Accessing the value for the provided label key
         updated_average_array.push(valueForLabel);
       });
-      console.log("this is updated array");
-      console.log(label);
-      console.log(updated_average_array);
 
 
       // Update g2 based on the updated_average_array
@@ -305,7 +283,6 @@
           selectedXValues.includes(d) ? "yellow" : "lightblue"
         );
       
-      console.log(selectedXValues);
 
       const updated_average_array = updateBarChartData(getSelectedTimePeriod(selectedXValues));
       updateBarChart(updated_average_array);
@@ -486,18 +463,14 @@
     }
     
     function updateBarChartData(selectedTime) {
-  
-      console.log("selectedTime", selectedTime);
+
       const updatedData = [];
     
       calculated_data.forEach(dictionary => {
         let sum = 0;
         let count = 0;
-        console.log(dictionary);
         // Iterate through each key-value pair in the dictionary
-        console.log('yes');
         for (const key of selectedTime) {
-          console.log(key);
           sum += dictionary[key.toUpperCase().split(' ').join('_')];
           count++;
         }
