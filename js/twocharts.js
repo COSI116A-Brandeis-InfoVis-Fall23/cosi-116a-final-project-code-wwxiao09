@@ -1,17 +1,17 @@
 ((() => {
-  d3.json("../data/line_chart_data.json", (calculated_data) => {
+  d3.json("https://cosi116a-brandeis-infovis-fall23.github.io/cosi-116a-final-project-code-wwxiao09/data/line_chart_data.json", (calculated_data) => {
 
-    const svgWidth = 1200;
+    const svgWidth = 1400;
     const svgHeight = 400;
 
-    const margin = { top: 20, right: 30, bottom: 80, left: 40 };
+    const margin = { top: 20, right: 60, bottom: 180, left: 40 };
     const plotWidth = (svgWidth / 3) - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
 
     // Create SVG container
     const svg = d3.select("#chart")
       .attr("width", svgWidth)
-      .attr("height", svgHeight);
+      .attr("height", svgHeight+50);
 
     // Create the first plot
     const g1 = svg.append("g")
@@ -51,7 +51,7 @@
 
     // X Axis Label
     g1.append("text")
-      .attr("transform", "translate(" + (margin.left + plotWidth / 2 - 20) + " ," + (svgHeight - margin.bottom / 3 + 30) + ")")
+      .attr("transform", "translate(" + (margin.left + plotWidth / 2 - 20) + " ," + (svgHeight - margin.bottom / 3 - 30) + ")")
       .style("text-anchor", "middle")
       .text("Different Time Periods of the Day");
 
@@ -59,7 +59,7 @@
     g1.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", margin.left / 5 - 70)
-      .attr("x", 0 - (svgHeight / 2) + 40)
+      .attr("x", 0 - (svgHeight / 2) + 100)
       .style("text-anchor", "middle")
       .text("Average Passenger Flow");
 
@@ -151,7 +151,32 @@
         .attr("r", 4) 
         .style("fill", "#fff") 
         .style("stroke", "#000") 
-        .style("stroke-width", 1.5);
+        .style("stroke-width", 1.5)
+        .on("click", clickToSeeDetails);
+  
+
+    function clickToSeeDetails(event, d){
+      console.log("clicked event is listened");
+      d3.selectAll(".dot").style("fill", "#fff");
+      
+          // Highlight the clicked circle
+          d3.select(this).style("fill", "red");
+      
+          // You can perform other actions on click if needed
+          // For example, log the clicked data
+          const xValue = d.x;
+          const yValue = d.y;
+          console.log("Clicked circle data:");
+          console.log("X value:", xValue);
+          console.log("Y value:", yValue);
+
+    }
+
+
+
+      
+
+      
 
     }
 
@@ -188,31 +213,9 @@
 
     // Create a table
 
-    let table = timeTable();
+    let table = timeTable(xLabels1, highlightPoints);
 
-    function timeTable(){
-      let table = d3.select("#table-container") 
-        .append("table")
-        .classed("my-table", true)
 
-      // Append rows to the table
-      const rowData = xLabels1;
-      // Append rows and cells to the table
-      const rows = table.selectAll("tr")
-        .data(rowData)
-        .enter().append("tr")
-
-      const row = table.append("tr");
-
-      row.selectAll("td")  
-          .data(rowData)   
-          .enter()          
-          .append("td")     
-          .text(d => d)
-          .on("click", highlightPoints);
-      return table;
-
-    }
 
     function highlightPoints(label) {
       table.selectAll("td")
@@ -431,7 +434,7 @@
 
     // X Axis Label
     g2.append("text")
-      .attr("transform", "translate(" + (margin.left + plotWidth / 2 - 20) + " ," + (svgHeight - margin.bottom / 3 + 30) + ")")
+      .attr("transform", "translate(" + (margin.left + plotWidth / 2 - 20) + " ," + (svgHeight - margin.bottom / 3 - 30) + ")")
       .style("text-anchor", "middle")
       .text("Four MBTA Lines");
 
@@ -439,7 +442,7 @@
     g2.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", margin.left / 5 - 70)
-      .attr("x", 0 - (svgHeight / 2) + 40)
+      .attr("x", 0 - (svgHeight / 2) + 100)
       .style("text-anchor", "middle")
       .text("Average Passenger Flow");
 
@@ -534,7 +537,7 @@
 
     function addTitle(vis, title){
       vis.append("text")
-      .attr("x", (svgWidth / 6))
+      .attr("x", (svgWidth / 6)-60)
       .attr("y", margin.top / 2 - 45)
       .attr("text-anchor", "middle")
       .style("font-size", "16px")
