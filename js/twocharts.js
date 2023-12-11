@@ -17,7 +17,7 @@
       
     // Create the first plot
     const g1 = svg.append("g")
-      .attr("transform", `translate(${margin.left + 200},${margin.top + 50})`);
+      .attr("transform", `translate(${margin.left + 200},${margin.top + 80})`);
 
     const brush = d3.brushX()
       .extent([[0, 0], [plotWidth, height]])
@@ -378,7 +378,7 @@
     // Create the second plot
 
     const g2 = svg.append("g")
-      .attr("transform", `translate(${plotWidth + margin.left * 2 + 400},${margin.top + 50})`);
+      .attr("transform", `translate(${plotWidth + margin.left * 2 + 400},${margin.top + 80})`);
       const average_array = [];
 
     calculated_data.forEach(data => {
@@ -570,7 +570,7 @@
     function addTitle(vis, title){
       vis.append("text")
       .attr("x", (svgWidth / 6)-60)
-      .attr("y", margin.top / 2 - 45)
+      .attr("y", margin.top / 2 - 70)
       .attr("text-anchor", "middle")
       .style("font-size", "16px")
       .style("font-weight", "bold")
