@@ -13,9 +13,20 @@
       .attr("width", svgWidth)
       .attr("height", svgHeight+50);
 
+
+      
     // Create the first plot
     const g1 = svg.append("g")
       .attr("transform", `translate(${margin.left + 200},${margin.top + 50})`);
+
+    const brush = d3.brushX()
+      .extent([[0, 0], [plotWidth, height]])
+      .on("end", brushed); // Define what happens on brush end
+
+    // Append the brush to the chart
+    g1.append("g")
+      .attr("class", "brush")
+      .call(brush);
 
     const xLabels1 = ["Very Early Morning", 'Early AM', 'AM Peak', 'Midday Base', 'Midday School', "PM Peak", "Evening", "Late Evening", "Night"];
     const yLabels1 = [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000];
@@ -145,23 +156,35 @@
       lines.selectAll(".dot")
         .data(d => d) 
         .enter().append("circle")
-        .on("click", clicked)
         .attr("class", "dot")
         .attr("cx", d => xScale1(d.x) + xScale1.bandwidth() / 2) 
         .attr("cy", d => yScale1(d.y)) 
         .attr("r", 4) 
         .style("fill", "#fff") 
         .style("stroke", "#000") 
-        .style("stroke-width", 1.5);
+        .style("stroke-width", 1.5)
+        .on("mouseover", showData)
+        .on("mouseout", hideData);
       
-
-      function clicked(){
-        console.log("this is clicked event");
+      function showData(d) {
+        // Show data on mouseover
+        g1.append("text")
+          .attr("class", "data-text")
+          .attr("x", xScale1(d.x) + xScale1.bandwidth() / 2)
+          .attr("y", yScale1(d.y) - 10)
+          .text(Math.round(d.y))
+          .style("text-anchor", "middle")
+          .style("font-size", "12px")
+          .style("fill", "#000");
+      }
+      
+      function hideData() {
+        // Remove text on mouseout
+        g1.selectAll(".data-text").remove();
       }
 
     }
 
-    
 
     // Add Legend
     lineChartAddLegend();
@@ -215,7 +238,7 @@
       dataLines.forEach((line, lineIndex) => {
         line.forEach(dot => {
           if (dot.x === label) {
-            g1.select(`.line-group:nth-child(${lineIndex+6}) .dot:nth-child(${line.indexOf(dot)+2})`)
+            g1.select(`.line-group:nth-child(${lineIndex+7}) .dot:nth-child(${line.indexOf(dot)+2})`)
               .style("fill", "red");
           }
         });
@@ -237,14 +260,14 @@
 
 
     // Create a brush
-    const brush = d3.brushX()
-      .extent([[0, 0], [plotWidth, height]])
-      .on("end", brushed); // Define what happens on brush end
+    // const brush = d3.brushX()
+    //   .extent([[0, 0], [plotWidth, height]])
+    //   .on("end", brushed); // Define what happens on brush end
 
-    // Append the brush to the chart
-    g1.append("g")
-      .attr("class", "brush")
-      .call(brush);
+    // // Append the brush to the chart
+    // g1.append("g")
+    //   .attr("class", "brush")
+    //   .call(brush);
 
     function brushed() {
       const selection = d3.event.selection;
