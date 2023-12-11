@@ -1,5 +1,5 @@
 ((() => {
-  d3.json("https://cosi116a-brandeis-infovis-fall23.github.io/cosi-116a-final-project-code-wwxiao09/data/line_chart_data.json", (calculated_data) => {
+  d3.json("../data/line_chart_data.json", (calculated_data) => {
 
     const svgWidth = 1400;
     const svgHeight = 400;
@@ -76,59 +76,55 @@
 
     // title
     addTitle(g1, "Average Passenger Flow Throughout the Day");
-
-
-
-      // const data_calculated = await d3.json('line_chart_data.json');
-      // console.log(data_calculated[0]["Route_name"]);
       
     const dataLines = [
       [
-        { x: "Very Early Morning", y: calculated_data[1]["VERY_EARLY_MORNING"] },
-        { x: "Early AM", y: calculated_data[1]["EARLY_AM"] },
-        { x: "AM Peak", y: calculated_data[1]["AM_PEAK"] },
-        { x: "Midday Base", y: calculated_data[1]["MIDDAY_BASE"] },
-        { x: "Midday School", y: calculated_data[1]["MIDDAY_SCHOOL"] },
-        { x: "PM Peak", y: calculated_data[1]["PM_PEAK"] },
-        { x: "Evening", y: calculated_data[1]["EVENING"] },
-        { x: "Late Evening", y: calculated_data[1]["LATE_EVENING"] },
-        { x: "Night", y: calculated_data[1]["NIGHT"] }
+        { x: "Very Early Morning", y: calculated_data[1]["VERY_EARLY_MORNING"]['avgFlow'] },
+        { x: "Early AM", y: calculated_data[1]["EARLY_AM"]['avgFlow'] },
+        { x: "AM Peak", y: calculated_data[1]["AM_PEAK"]['avgFlow'] },
+        { x: "Midday Base", y: calculated_data[1]["MIDDAY_BASE"]['avgFlow'] },
+        { x: "Midday School", y: calculated_data[1]["MIDDAY_SCHOOL"]['avgFlow'] },
+        { x: "PM Peak", y: calculated_data[1]["PM_PEAK"]['avgFlow'] },
+        { x: "Evening", y: calculated_data[1]["EVENING"]['avgFlow'] },
+        { x: "Late Evening", y: calculated_data[1]["LATE_EVENING"]['avgFlow'] },
+        { x: "Night", y: calculated_data[1]["NIGHT"]['avgFlow'] }
 
       ],
       [
-        { x: "Very Early Morning", y: calculated_data[3]["VERY_EARLY_MORNING"] },
-        { x: "Early AM", y: calculated_data[3]["EARLY_AM"] },
-        { x: "AM Peak", y: calculated_data[3]["AM_PEAK"] },
-        { x: "Midday Base", y: calculated_data[3]["MIDDAY_BASE"] },
-        { x: "Midday School", y: calculated_data[3]["MIDDAY_SCHOOL"] },
-        { x: "PM Peak", y: calculated_data[3]["PM_PEAK"] },
-        { x: "Evening", y: calculated_data[3]["EVENING"] },
-        { x: "Late Evening", y: calculated_data[3]["LATE_EVENING"] },
-        { x: "Night", y: calculated_data[3]["NIGHT"] }
+        { x: "Very Early Morning", y: calculated_data[3]["VERY_EARLY_MORNING"]['avgFlow'] },
+        { x: "Early AM", y: calculated_data[3]["EARLY_AM"]['avgFlow'] },
+        { x: "AM Peak", y: calculated_data[3]["AM_PEAK"]['avgFlow'] },
+        { x: "Midday Base", y: calculated_data[3]["MIDDAY_BASE"]['avgFlow'] },
+        { x: "Midday School", y: calculated_data[3]["MIDDAY_SCHOOL"]['avgFlow'] },
+        { x: "PM Peak", y: calculated_data[3]["PM_PEAK"]['avgFlow'] },
+        { x: "Evening", y: calculated_data[3]["EVENING"]['avgFlow'] },
+        { x: "Late Evening", y: calculated_data[3]["LATE_EVENING"]['avgFlow'] },
+        { x: "Night", y: calculated_data[3]["NIGHT"]['avgFlow'] }
       ],
       [
-        { x: "Very Early Morning", y: calculated_data[2]["VERY_EARLY_MORNING"] },
-        { x: "Early AM", y: calculated_data[2]["EARLY_AM"] },
-        { x: "AM Peak", y: calculated_data[2]["AM_PEAK"] },
-        { x: "Midday Base", y: calculated_data[2]["MIDDAY_BASE"] },
-        { x: "Midday School", y: calculated_data[2]["MIDDAY_SCHOOL"] },
-        { x: "PM Peak", y: calculated_data[2]["PM_PEAK"] },
-        { x: "Evening", y: calculated_data[2]["EVENING"] },
-        { x: "Late Evening", y: calculated_data[2]["LATE_EVENING"] },
-        { x: "Night", y: calculated_data[2]["NIGHT"] }
+        { x: "Very Early Morning", y: calculated_data[2]["VERY_EARLY_MORNING"]['avgFlow'] },
+        { x: "Early AM", y: calculated_data[2]["EARLY_AM"]['avgFlow'] },
+        { x: "AM Peak", y: calculated_data[2]["AM_PEAK"]['avgFlow'] },
+        { x: "Midday Base", y: calculated_data[2]["MIDDAY_BASE"]['avgFlow'] },
+        { x: "Midday School", y: calculated_data[2]["MIDDAY_SCHOOL"]['avgFlow'] },
+        { x: "PM Peak", y: calculated_data[2]["PM_PEAK"]['avgFlow'] },
+        { x: "Evening", y: calculated_data[2]["EVENING"]['avgFlow'] },
+        { x: "Late Evening", y: calculated_data[2]["LATE_EVENING"]['avgFlow'] },
+        { x: "Night", y: calculated_data[2]["NIGHT"]['avgFlow'] }
       ],
       [
-        { x: "Very Early Morning", y: calculated_data[0]["VERY_EARLY_MORNING"] },
-        { x: "Early AM", y: calculated_data[0]["EARLY_AM"] },
-        { x: "AM Peak", y: calculated_data[0]["AM_PEAK"] },
-        { x: "Midday Base", y: calculated_data[0]["MIDDAY_BASE"] },
-        { x: "Midday School", y: calculated_data[0]["MIDDAY_SCHOOL"] },
-        { x: "PM Peak", y: calculated_data[0]["PM_PEAK"] },
-        { x: "Evening", y: calculated_data[0]["EVENING"] },
-        { x: "Late Evening", y: calculated_data[0]["LATE_EVENING"] },
-        { x: "Night", y: calculated_data[0]["NIGHT"] }
+        { x: "Very Early Morning", y: calculated_data[0]["VERY_EARLY_MORNING"]['avgFlow'] },
+        { x: "Early AM", y: calculated_data[0]["EARLY_AM"]['avgFlow'] },
+        { x: "AM Peak", y: calculated_data[0]["AM_PEAK"]['avgFlow'] },
+        { x: "Midday Base", y: calculated_data[0]["MIDDAY_BASE"]['avgFlow'] },
+        { x: "Midday School", y: calculated_data[0]["MIDDAY_SCHOOL"]['avgFlow'] },
+        { x: "PM Peak", y: calculated_data[0]["PM_PEAK"]['avgFlow'] },
+        { x: "Evening", y: calculated_data[0]["EVENING"]['avgFlow'] },
+        { x: "Late Evening", y: calculated_data[0]["LATE_EVENING"]['avgFlow'] },
+        { x: "Night", y: calculated_data[0]["NIGHT"]['avgFlow'] }
       ]
     ];
+    console.log(calculated_data);
     // Define line colors
     const lineColors = ["blue", "red", "orange", "green"];
 
@@ -248,26 +244,16 @@
 
       calculated_data.forEach(data => {
         // Assuming label is the key you want to access in each dictionary
-        const valueForLabel = data[label.toUpperCase().split(' ').join('_')]; // Accessing the value for the provided label key
+        const valueForLabel = data[label.toUpperCase().split(' ').join('_')]['avgFlow']; // Accessing the value for the provided label key
         updated_average_array.push(valueForLabel);
       });
 
 
       // Update g2 based on the updated_average_array
-      updateBarChart(updated_average_array);
+      updateBarChart(updated_average_array, xLabels1);
 
     }
 
-
-    // Create a brush
-    // const brush = d3.brushX()
-    //   .extent([[0, 0], [plotWidth, height]])
-    //   .on("end", brushed); // Define what happens on brush end
-
-    // // Append the brush to the chart
-    // g1.append("g")
-    //   .attr("class", "brush")
-    //   .call(brush);
 
     function brushed() {
       const selection = d3.event.selection;
@@ -279,7 +265,8 @@
         // Reset dot colors
         g1.selectAll(".dot").style("fill", "#fff");
         const updated_average_array = updateBarChartData(xLabels1);
-        updateBarChart(updated_average_array);
+        updateDetailData(xLabels1);
+        updateBarChart(updated_average_array, xLabels1);
         return;
       }
     
@@ -308,7 +295,8 @@
       
 
       const updated_average_array = updateBarChartData(getSelectedTimePeriod(selectedXValues));
-      updateBarChart(updated_average_array);
+      updateDetailData(getSelectedTimePeriod(selectedXValues));
+      updateBarChart(updated_average_array, getSelectedTimePeriod(selectedXValues));
 
     }
 
@@ -319,9 +307,9 @@
     // Function to handle table brushing
     function handleTableBrushing(values) {
       const updated_average_array = updateBarChartData(values);
-    
+      updateDetailData(values);
       // Update bar chart based on selected values
-      updateBarChart(updated_average_array);
+      updateBarChart(updated_average_array, values);
     
       // Highlight corresponding dots in the line chart
       g1.selectAll(".dot")
@@ -398,7 +386,7 @@
       let count = 0;
       for (let key in data) {
         if (key !== 'Route_name') { // Assuming 'Route_name' is not part of the sum
-          sum += data[key];
+          sum += data[key]['avgFlow'];
           count += 1;
         }
       }
@@ -449,6 +437,31 @@
     // title
     addTitle(g2, "Average Passenger Flow For the Selected Time Period(s)");
 
+    const details = detailData(xLabels1);
+    console.log(details)
+
+    function detailData(timePeriods){
+      const colors = ['green', 'blue', 'orange', 'red'];
+      const result = {};
+      colors.forEach((color, i) => {
+        const averages = [];
+        const ons = [];
+        const offs = [];
+        timePeriods.forEach(time => {
+          ons.push(calculated_data[i][time.toUpperCase().split(' ').join('_')]["avgOns"]);
+          offs.push(calculated_data[i][time.toUpperCase().split(' ').join('_')]["avgOffs"]);
+        })
+        const avgOns = ons.reduce((acc, val) => acc + val, 0) / ons.length;
+        const avgOffs = offs.reduce((acc, val) => acc + val, 0) / offs.length;
+        result[color] = { ons: avgOns, offs: avgOffs };
+
+      });
+      
+
+      return result; // green, blue, orange, red
+
+    }
+
     const data = [average_array[1], average_array[3], average_array[2], average_array[0]]; 
     const barColors = ['blue', 'red', 'orange', 'green']; 
     
@@ -461,7 +474,29 @@
       .attr("y", d => yScale2(d))
       .attr("width", xScale2.bandwidth() * 0.8) 
       .attr("height", d => height - yScale2(d))
-      .style("fill", (d, i) => barColors[i]);
+      .style("fill", (d, i) => barColors[i])
+      .on("mouseover", function(d, i) {
+        console.log("cliked on bars")
+        const colorDetails = details[barColors[i]]; // Get details for the clicked color
+        const ons = colorDetails.ons;
+        const offs = colorDetails.offs;
+        g2.append("text")
+          .attr("class", "data-text")
+          .attr("x", xScale2(xLabels2[i]) + xScale2.bandwidth() / 2)
+          .attr("y", yScale2(d) - 50) // Adjust vertical position for the first line
+          .style("text-anchor", "middle")
+          .style("font-size", "14px")
+          .style("fill", "#000")
+          .text(`Avg Ons: ${Math.round(ons)}`)
+          .append("tspan")
+          .attr("x", xScale2(xLabels2[i]) + xScale2.bandwidth() / 2)
+          .attr("dy", "1.2em") // Set the line spacing for the second line
+          .text(`Avg Offs: ${Math.round(offs)}`);
+    
+      })
+      .on("mouseout", function() {
+        g2.selectAll(".data-text").remove();
+      });
     
     // Add labels to the bars
     g2.selectAll(".bar-label")
@@ -494,7 +529,7 @@
         let count = 0;
         // Iterate through each key-value pair in the dictionary
         for (const key of selectedTime) {
-          sum += dictionary[key.toUpperCase().split(' ').join('_')];
+          sum += dictionary[key.toUpperCase().split(' ').join('_')]['avgFlow'];
           count++;
         }
     
@@ -506,7 +541,8 @@
       return updatedData;
     }
       
-    function updateBarChart(data){
+    function updateBarChart(data, timePeriod){
+     
       const updatedData = [
         Math.round(data[1]),
         Math.round(data[3]),
@@ -539,6 +575,18 @@
       .style("font-size", "16px")
       .style("font-weight", "bold")
       .text(title);
+    }
+
+    function updateDetailData(timePeriod){
+      newDetail = detailData(timePeriod);
+      details.green.ons = newDetail['green']['ons']
+      details.green.offs = newDetail['green']['offs']
+      details.blue.ons = newDetail['blue']['ons']
+      details.blue.offs = newDetail['blue']['offs']
+      details.orange.ons = newDetail['orange']['ons']
+      details.orange.offs = newDetail['orange']['offs']
+      details.red.ons = newDetail['red']['ons']
+      details.red.offs = newDetail['red']['offs']
     }
 
   });

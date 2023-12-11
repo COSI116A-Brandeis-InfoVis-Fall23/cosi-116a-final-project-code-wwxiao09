@@ -1,50 +1,194 @@
 [
   {
     "Route_name": "Green Line",
-    "VERY_EARLY_MORNING": 178.375,
-    "MIDDAY_SCHOOL": 2352.0833333333335,
-    "PM_PEAK": 4257.166666666667,
-    "MIDDAY_BASE": 3196.375,
-    "EARLY_AM": 579.5,
-    "AM_PEAK": 2816.375,
-    "EVENING": 2573.2916666666665,
-    "LATE_EVENING": 835.875,
-    "NIGHT": 108
+    "VERY_EARLY_MORNING": {
+      "avgFlow": 178.375,
+      "avgOns": 48.375,
+      "avgOffs": 50.75
+    },
+    "MIDDAY_SCHOOL": {
+      "avgFlow": 2352.0833333333335,
+      "avgOns": 670.375,
+      "avgOffs": 673.1666666666666
+    },
+    "PM_PEAK": {
+      "avgFlow": 4257.166666666667,
+      "avgOns": 1227,
+      "avgOffs": 1179
+    },
+    "MIDDAY_BASE": {
+      "avgFlow": 3196.375,
+      "avgOns": 887.7916666666666,
+      "avgOffs": 913.8333333333334
+    },
+    "EARLY_AM": {
+      "avgFlow": 579.5,
+      "avgOns": 154.70833333333334,
+      "avgOffs": 156.16666666666666
+    },
+    "AM_PEAK": {
+      "avgFlow": 2816.375,
+      "avgOns": 733.2916666666666,
+      "avgOffs": 792.875
+    },
+    "EVENING": {
+      "avgFlow": 2573.2916666666665,
+      "avgOns": 734.1666666666666,
+      "avgOffs": 702.5
+    },
+    "LATE_EVENING": {
+      "avgFlow": 835.875,
+      "avgOns": 239.91666666666666,
+      "avgOffs": 232.08333333333334
+    },
+    "NIGHT": {
+      "avgFlow": 108,
+      "avgOns": 32.791666666666664,
+      "avgOffs": 30.791666666666668
+    }
   },
   {
     "Route_name": "Blue Line",
-    "VERY_EARLY_MORNING": 125.5,
-    "EARLY_AM": 277,
-    "AM_PEAK": 689,
-    "MIDDAY_BASE": 1004.5,
-    "PM_PEAK": 2720,
-    "NIGHT": 212.5,
-    "EVENING": 1604,
-    "LATE_EVENING": 1040.5,
-    "MIDDAY_SCHOOL": 1529.5
+    "VERY_EARLY_MORNING": {
+      "avgFlow": 125.5,
+      "avgOns": 29.5,
+      "avgOffs": 381
+    },
+    "EARLY_AM": {
+      "avgFlow": 277,
+      "avgOns": 97,
+      "avgOffs": 573
+    },
+    "AM_PEAK": {
+      "avgFlow": 689,
+      "avgOns": 215.5,
+      "avgOffs": 1770.5
+    },
+    "MIDDAY_BASE": {
+      "avgFlow": 1004.5,
+      "avgOns": 652.5,
+      "avgOffs": 1390
+    },
+    "PM_PEAK": {
+      "avgFlow": 2720,
+      "avgOns": 2157.5,
+      "avgOffs": 638
+    },
+    "NIGHT": {
+      "avgFlow": 212.5,
+      "avgOns": 204,
+      "avgOffs": 16.5
+    },
+    "EVENING": {
+      "avgFlow": 1604,
+      "avgOns": 1417,
+      "avgOffs": 316.5
+    },
+    "LATE_EVENING": {
+      "avgFlow": 1040.5,
+      "avgOns": 954,
+      "avgOffs": 111.5
+    },
+    "MIDDAY_SCHOOL": {
+      "avgFlow": 1529.5,
+      "avgOns": 1187.5,
+      "avgOffs": 771
+    }
   },
   {
     "Route_name": "Orange Line",
-    "EARLY_AM": 2264.25,
-    "AM_PEAK": 8668,
-    "MIDDAY_BASE": 7499.5,
-    "EVENING": 4486,
-    "MIDDAY_SCHOOL": 5395.25,
-    "LATE_EVENING": 1183.25,
-    "NIGHT": 150,
-    "PM_PEAK": 10478,
-    "VERY_EARLY_MORNING": 630.25
+    "EARLY_AM": {
+      "avgFlow": 2264.25,
+      "avgOns": 228,
+      "avgOffs": 331.25
+    },
+    "AM_PEAK": {
+      "avgFlow": 8668,
+      "avgOns": 879.25,
+      "avgOffs": 1243.25
+    },
+    "MIDDAY_BASE": {
+      "avgFlow": 7499.5,
+      "avgOns": 865.75,
+      "avgOffs": 1014
+    },
+    "EVENING": {
+      "avgFlow": 4486,
+      "avgOns": 742.75,
+      "avgOffs": 477
+    },
+    "MIDDAY_SCHOOL": {
+      "avgFlow": 5395.25,
+      "avgOns": 764,
+      "avgOffs": 623.25
+    },
+    "LATE_EVENING": {
+      "avgFlow": 1183.25,
+      "avgOns": 321.5,
+      "avgOffs": 88.5
+    },
+    "NIGHT": {
+      "avgFlow": 150,
+      "avgOns": 33.75,
+      "avgOffs": 10.75
+    },
+    "PM_PEAK": {
+      "avgFlow": 10478,
+      "avgOns": 1552.25,
+      "avgOffs": 1136
+    },
+    "VERY_EARLY_MORNING": {
+      "avgFlow": 630.25,
+      "avgOns": 32.25,
+      "avgOffs": 97.75
+    }
   },
   {
     "Route_name": "Red Line",
-    "MIDDAY_SCHOOL": 6782,
-    "PM_PEAK": 15286.5,
-    "AM_PEAK": 10254.5,
-    "MIDDAY_BASE": 8485.5,
-    "VERY_EARLY_MORNING": 630,
-    "EARLY_AM": 2586.5,
-    "NIGHT": 218.5,
-    "EVENING": 7538.5,
-    "LATE_EVENING": 1886
+    "MIDDAY_SCHOOL": {
+      "avgFlow": 6782,
+      "avgOns": 2288,
+      "avgOffs": 1916
+    },
+    "PM_PEAK": {
+      "avgFlow": 15286.5,
+      "avgOns": 5390.5,
+      "avgOffs": 2847.5
+    },
+    "AM_PEAK": {
+      "avgFlow": 10254.5,
+      "avgOns": 1538,
+      "avgOffs": 4085
+    },
+    "MIDDAY_BASE": {
+      "avgFlow": 8485.5,
+      "avgOns": 2276.5,
+      "avgOffs": 3439
+    },
+    "VERY_EARLY_MORNING": {
+      "avgFlow": 630,
+      "avgOns": 144,
+      "avgOffs": 199
+    },
+    "EARLY_AM": {
+      "avgFlow": 2586.5,
+      "avgOns": 387.5,
+      "avgOffs": 907.5
+    },
+    "NIGHT": {
+      "avgFlow": 218.5,
+      "avgOns": 120.5,
+      "avgOffs": 63.5
+    },
+    "EVENING": {
+      "avgFlow": 7538.5,
+      "avgOns": 3275,
+      "avgOffs": 1554
+    },
+    "LATE_EVENING": {
+      "avgFlow": 1886,
+      "avgOns": 987,
+      "avgOffs": 457.5
+    }
   }
 ]

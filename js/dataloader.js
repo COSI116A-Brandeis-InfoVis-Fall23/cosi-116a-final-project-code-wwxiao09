@@ -37,16 +37,20 @@ csv()
           const route = item.route_name;
           const timePeriod = item.time_period_name;
           const flow = parseInt(item.average_flow, 10);
+          const on = parseInt(item.average_ons, 10);
+          const off = parseInt(item.average_offs, 10);
   
           if (!tempResult[route]) {
               tempResult[route] = {};
           }
   
           if (!tempResult[route][timePeriod]) {
-              tempResult[route][timePeriod] = { totalFlow: 0, count: 0 };
+              tempResult[route][timePeriod] = { totalFlow: 0, count: 0 , total_ons: 0, total_offs: 0};
           }
   
           tempResult[route][timePeriod].totalFlow += flow;
+          tempResult[route][timePeriod].total_ons += on;
+          tempResult[route][timePeriod].total_offs += off;
           tempResult[route][timePeriod].count += 1;
       });
   
@@ -59,7 +63,11 @@ csv()
   
           for (const timePeriod in tempResult[route]) {
               const data = tempResult[route][timePeriod];
-              routeData[timePeriod] = data.totalFlow / data.count;
+              routeData[timePeriod] = routeData[timePeriod] || {};
+              routeData[timePeriod]["avgFlow"] = data.totalFlow / data.count;
+              routeData[timePeriod]["avgOns"] = data.total_ons / data.count;
+              routeData[timePeriod]["avgOffs"] = data.total_offs / data.count;
+              
           }
   
           finalResult.push(routeData);
