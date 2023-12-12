@@ -13,16 +13,11 @@
     // Create a line chart given x and y attributes, labels, offsets; 
     // a dispatcher (d3-dispatch) for selection events; 
     // a div id selector to put our svg in; and the data to use.
-    // let mbtaLine = linechart()
-      // .xLabel("YEAR")
-      // .yLabel("POVERTY RATE")
-      // ("#linechart", data);
+    let mbtaLine = twoCharts()
+      ("#chart", data);
 
-    // let mbtaMap = nodelinkmap()
-    //   ("#nodelinkmap", data);
-
-    //   let mbtaBar = barchart()
-    //   ("#barchart", data);
+    let mbtaTable = timeTable()
+      ("#timetable", data);
   });
 
 })());

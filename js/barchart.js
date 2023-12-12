@@ -1,3 +1,4 @@
+// create the bar chart
 const xLabels = ["red line", "blue line", "green line", "orange line"];
     const yLabels = [100, 200, 300, 400, 500, 600, 700];
 

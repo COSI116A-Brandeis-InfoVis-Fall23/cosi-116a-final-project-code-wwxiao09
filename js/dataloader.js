@@ -1,3 +1,4 @@
+// load the data
 const csvFilePath = '../data/MBTA_Rail_Ridership.csv'; 
 const csv = require('csvtojson');
 const fs = require('fs');

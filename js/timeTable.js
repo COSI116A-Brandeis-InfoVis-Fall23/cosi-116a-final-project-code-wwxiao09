@@ -1,3 +1,4 @@
+// function to create the time table
 function timeTable(data, highlightPoints){
     let table = d3.select("#table-container") 
       .append("table")

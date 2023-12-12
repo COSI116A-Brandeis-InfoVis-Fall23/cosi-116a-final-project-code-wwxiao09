@@ -1,6 +1,4 @@
 const csvFilePath = "MBTA_Rail_Ridership.csv"
-//const xLabels = ["red line", "blue line", "green line", "orange line"];
-  //  const yLabels = [100, 200, 300, 400, 500, 600, 700];
   d3.csv(csvFilePath).then(data => {
     // Extract only the relevant columns: "route_name" and "total_ons"
     const filteredData = data.map(d => ({ route_name: d.route_name, total_ons: +d.total_ons }));
@@ -59,19 +57,3 @@ const csvFilePath = "MBTA_Rail_Ridership.csv"
     .attr("width", xScale.bandwidth())
     .attr("height", d => height - yScale(d))
     .attr("fill", "steelblue");  
-
-    // g.append("g")
-    //   .attr("class", "x-axis")
-    //   .attr("transform", "translate(0," + height + ")")
-    //   .call(xAxis)
-    //   .selectAll("text")
-    //   .attr("y", 10) // Adjust label position
-    //   .attr("x", 9) // Adjust label position
-    //   .attr("dy", ".35em")
-    //   .attr("transform", "rotate(45)") // Rotate labels for better readability
-    //   .style("text-anchor", "start");
-
-    // g.append("g")
-    //   .attr("class", "y-axis")
-    //   .call(yAxis);
-    
