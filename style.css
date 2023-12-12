@@ -154,3 +154,7 @@ h1, h2, h3 {
   .table-non-highlighted{
 	background-color: grey;
   }
+  .final_sketch {
+	width: 500px; /* Set the width of the image */
+  	height: auto;
+  }
