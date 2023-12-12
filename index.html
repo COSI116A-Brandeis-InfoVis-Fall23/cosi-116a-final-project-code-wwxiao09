@@ -45,13 +45,13 @@
       ridership distribution for MBTA rails. Our motivation for tackling the problems addressed 
       through our visualization is so that users can navigate the MBTA subway system more easily.
       This visualization showcases ridership distribution across time periods, directions, 
-      rails, and stations. Using various encoding channels like area, color, 
+      rails. Using various encoding channels like area, color, 
       and position, we've developed an interactive linked visualization. 
      </p>
     
     <p>Its aim is to assist users in understanding passenger flow when using 
       any transportation line at different time periods. The link node chart enables 
-      users to explore passenger flow details for each station, while the line and bar
+      users to explore passenger flow details for each line, while the line and bar
        charts offer different perspectives—one highlighting time sensitivity and the other providing an overview of passenger flow across rail lines.</p>
 
     
@@ -88,12 +88,15 @@
     <p><em>See above in the demo video section for demonstration on our visualization.</em></p>
 
     <h1>Data Analysis</h1>
-    <p><em>The dataset used in this project is the <a href="https://mbta-massdot.opendata.arcgis.com/datasets/MassDOT::mbta-rail-ridership-by-time-period-season-route-line-and-stop/explore"> MBTA Rail Ridership</a>which can be found on the MBTA official website. This dataset provides a detailed overlook of ridership data across all the MBTA lines. The dataset provides information for the mean of total offs/total ons of passengers. The data types for our dataset are item and attribute.
+    <p><em>The dataset used in this project is the <a href="https://mbta-massdot.opendata.arcgis.com/datasets/MassDOT::mbta-rail-ridership-by-time-period-season-route-line-and-stop/explore"> MBTA Rail Ridership</a>, available on the official MBTA website. This comprehensive dataset offers an intricate overview of ridership data encompassing all MBTA subway lines. It furnishes detailed information for each specific stop on every line, including the average count of passenger flow and more detailed information like ons and offs for each line. Our dataset contains mainly attribute data types, including both categorical and quantitative attribute types. Notably, it comprises data from various seasons, yet for the sake of consistency and to avoid pandemic-related disruptions, we specifically selected Fall 2019 data, representing the latest non-pandemic period available which we believe best mirrors the ridership status for current MBTA lines.
+
     </em></p >
     <p>The steps for the data preprocessing were:</p >
-    <p> 1. Convert dataset into JSON file and put into the data folder </em> <p>
-      <p> 2. Extract specific data we want by doing simple calculation </p >
-      <p> 3. Load it into js file to be visualized </p >
+    <p> 1. Downloaded raw data in csv from the web (MBTA_Rail_Ridership.csv) and deleted irrelevant columns that we didn’t want to get raw json file (data.json) </em> <p>
+      <p> 2. Grouped and calculated the average flow, ons, and offs based on the subway line and time period. The calculated data is saved into json file preprocessed_data.json </p >
+      <p> 3. Load preprocessed_data.json into js file to be visualized.
+      </p >
+    <p>All the data files we used in js are uploaded in the data folder. All the data processing code can be found in dataloader.js.</p>
 
     <h1>Task Analysis</h1>
     <p>Our domain tasks for this project are as follows: </p>
@@ -102,7 +105,7 @@
     <p> <b> Goals for first domain task: </b></p>
     <p> <ol>
       <li>Show the passenger flow at various times for all the lines on the MBTA. </li>
-      <li> Clearly show the user the general distribution of passenger numbers for each station. </li>
+      <li> Clearly show the user the general distribution of passenger numbers for each line. </li>
       <li> Quickly find general information on each MBTA rail to see which ones are busy at what specific times. </li>
       <li> Show users trends on passenger flows for each MBTA rail from the visualization. </li>
     </ol></p>
@@ -143,7 +146,7 @@
 
     <h1>Conclusion</h1>
 
-    <p>Through our visualization, we were able to successfully visualize each MBTA line’s passenger flow from 2019 at different times of the day (excluding the commuter rail lines).Our visualizations are designed with user-friendliness and interactivity at the forefront, offering additional support to travelers as they plan their journeys. Our aim is to facilitate a seamless travel experience, allowing users to navigate and avoid crowded conditions with ease.  Additionally, we were able to successfully visualize it using a timetable linked with a line chart and bar graph so that the user could see specific trends amongst each line. For future work/improvements, our project could definitely implement all the commuter rail lines and all the stations on each line. </p>
+    <p>Through our visualization, we were able to successfully visualize each MBTA line's passenger flow from 2019 at different times of the day (excluding the commuter rail lines).Our visualizations are designed with user-friendliness and interactivity at the forefront, offering additional support to travelers as they plan their journeys. Our aim is to facilitate a seamless travel experience, allowing users to navigate and avoid crowded conditions with ease.  Additionally, we were able to successfully visualize it using a timetable linked with a line chart and bar graph so that the user could see specific trends amongst each line. For future work/improvements, our project could definitely implement all the commuter rail lines. </p>
     
 
     

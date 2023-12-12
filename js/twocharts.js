@@ -1,5 +1,5 @@
 ((() => {
-  d3.json("https://cosi116a-brandeis-infovis-fall23.github.io/cosi-116a-final-project-code-wwxiao09/data/line_chart_data.json", (calculated_data) => {
+  d3.json("https://cosi116a-brandeis-infovis-fall23.github.io/cosi-116a-final-project-code-wwxiao09/data/processed_data.json", (calculated_data) => {
 
     const svgWidth = 1400;
     const svgHeight = 400;
