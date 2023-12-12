@@ -85,26 +85,23 @@
     <p><em>Embedded MP4 demo video using the HTML5 &lt;video&gt; tag. For example, this screen recording Prof. Cody Dunne made of Mike Bostock's flexible transitions in D3 slide:</em></p>
     
     <video controls width="100%">
-      <source src="data/116_final_video.mp4" type="video/mp4">
+      <source src="files/116_final_video.mp4" type="video/mp4">
       <p>Your browser doesn't support HTML5 video. Here is
        a <a href="http://www.ccs.neu.edu/home/cody/courses/shared/d3-flexible-transitions.mp4">link to the video</a> instead.</p>
     </video>
 
     <h1>Visualization explanation</h1>
+
     
     <p><em>See above in the demo video section for demonstration on our visualization.</em></p>
 
     <h1>Data Analysis</h1>
-    <p><em>The dataset used in this project is the MBTA Rail Ridership which can be found on the MBTA official website. This dataset provides a detailed overlook for ridership data cross all the MBTA lines. The dataset provides information for each specific stop on each line with information on the time of day each passenger boarded/disembarked the train as well as with the mean of total offs/total ons of passengers. Additionally, the data types for our dataset are: nominal, interval, and ordinal.
-      </em></p>
-      <p>The steps for the data preprocessing were:</p>
-      <p> 1. Convert dataset into JSON file and put into the data folder </em> <p>
-        <p> 2. Load it into Javascript file using fetch </p>
-        <p> 3. For Barchart: Same steps, but for the specific data found it was calculated using line chart data and put into an array initially used to fill barchart data </p>
-
-  
-
-    <p><em>Expectation: Data sources match the problem statement and are appropriate. These descriptions should be very explicit so someone could read your page and properly reproduce your results.</em></p>
+    <p><em>The dataset used in this project is the <a href="https://mbta-massdot.opendata.arcgis.com/datasets/MassDOT::mbta-rail-ridership-by-time-period-season-route-line-and-stop/explore">MBTA Rail Ridership</a>which can be found on the MBTA official website. This dataset provides a detailed overlook of ridership data across all the MBTA lines. The dataset provides information for each specific stop on each line with information on the time of day each passenger boarded/disembarked the train as well as with the mean of total offs/total ons of passengers. Additionally, the data types for our dataset are nominal, interval, and ordinal.
+    </em></p >
+    <p>The steps for the data preprocessing were:</p >
+    <p> 1. Convert dataset into JSON file and put into the data folder </em> <p>
+      <p> 2. Extract specific data we want by doing simple calculation </p >
+      <p> 3. Load it into js file to be visualized </p >
 
     <h1>Task Analysis</h1>
     <p>Our domain tasks for this project are as follows: </p>
@@ -114,16 +111,16 @@
     <p> <ol>
       <li>Show the passenger flow at various times for all the lines on the MBTA. </li>
       <li> Clearly show the user the general distribution of passenger numbers for each station. </li>
-      <li> Quickly find general information on each MBTA rail to see which ones are busy at what specific times </li>
-      <li> Show users trends on passenger flows for each MBTA rail from the visualization </li>
+      <li> Quickly find general information on each MBTA rail to see which ones are busy at what specific times. </li>
+      <li> Show users trends on passenger flows for each MBTA rail from the visualization. </li>
     </ol></p>
 
     <p> <b> Goals for second domain task: </b></p>
     <p>
       <ol>
-        <li> Shows user overall trend of passenger flow using time table </li>
-        <li> User can explore various trends amongst each MBTA line using the time table </li>
-        <li> Utilization of time table provides a more enjoyable experience of user at navigating the visualization </li>
+        <li> Shows user overall trend of passenger flow using timetable </li>
+        <li> Users can explore various trends amongst each MBTA line using the timetable </li>
+        <li> Utilization of a timetable provides a more enjoyable experience for users at navigating the visualization</li>
         <li> Enhance the interactivity of your visualizations through the implementation of a brushing and linking technique. This method allows for the establishment of connections between multiple visualizations by applying a highlighting effect. Simultaneously, adapt the content of the associated bar chart to reflect the selections made via brushing.</li>
         <li> Incorporate mouseover events to reveal in-depth details from the dataset. Positioning the cursor over a data point or a bar triggers a display of comprehensive information, offering users a deeper understanding of the data they are examining. This interactive feature not only enriches the user experience but also serves as a tool for detailed data analysis, making the insights more accessible and meaningful. </li>
       </ol>
@@ -137,34 +134,24 @@
 
     <img src="images/EarlySketch1.png" alt="EarlySketch1" />
 
-    <p>In the bar-graph sketch above, we chose to use lines for the marks and each bar(line) represents a subway line. The channels used are vertical lengths, horizontal positions, and colors. 
-      We chose to use vertical lengths so that the user could easily distinguish the passenger volume for each line and see which line has the least or greatest volume. 
-      Additionally, we chose horizontal positions to represent the different subway lines and colors to relate to the name of the subway lines. 
+    <p>In the bar-graph sketch above, we chose to use lines for the marks and each bar(line) represents a subway line. The channels used are vertical lengths, horizontal positions, and colors. We chose to use vertical lengths so that the user could easily distinguish the passenger volume for each line and see which line has the least or greatest volume. Additionally, we chose horizontal positions to represent the different subway lines and colors to relate to the names of the subway lines.
     </p>
 
     <img src="images/EarlySketch2.png" alt="EarlySketch2" />
 
-    <p>In the line graph sketch above, we chose lines and points for the marks. 
-      We chose lines to represent each subway line and each point on the line to represent the different times in the day. 
-      Our design choice for this was so that the user can easily select the time period without having to specifically click on the time. 
-      The channels used are position and color, our justification for using these is the same for using it in our bar-graph sketch. </p>
+    <p>In the line graph sketch above, we chose lines and points for the marks. We chose lines to represent each subway line and each point on the line to represent the different times of the day. Our design choice for this was so that the user could easily select the time period without having to specifically click on the time. The channels used are position and color, our justification for using these is the same as for using these in our bar-graph sketch.</p>
+
 
       <p> <b> Final Sketch: </b></p>
-      <img src="images/FinalSketch.png" alt="FinalSketch" />
-    <p>From our previous beginning sketches, our design choices remained consistent with what we described previously within our final sketch drawings (shown above). 
-      We kept the same channel and marks for both the line and bar graph and our justifications for both remain the same. 
-    </p>
+      <img class="final_sketch" src="images/FinalSketch1.png" alt="FinalSketch1" /><br />
+      <img class="final_sketch" src="images/FinalSketch2.png" alt="FinalSketch2" />
+    <p>From our previous beginning sketches, our design choices remained consistent with what we described previously within our final sketch drawings (shown above). We kept the same channel and marks for both the line and bar graph and our justifications for both remain the same.</p>
 
 
 
     <h1>Conclusion</h1>
 
-    <p>Through our visualization we were able to successfully visualize each MBTA line’s passenger flow at different times in the day (excluding the commuter rail lines). 
-      Additionally, we were able to successfully visualize it using a time-table linked with a line-chart and bar-graph 
-      so that the user could see specific trends amongst each line.  Due to time constraints, we were not able to implement every station on each line 
-      as well as the commuter railway lines, however, for future work/improvements, our project could 
-      definitely implement all the commuter rail lines and as well all the stations on each line. 
-    </p>
+    <p>Through our visualization, we were able to successfully visualize each MBTA line’s passenger flow at different times of the day (excluding the commuter rail lines). Additionally, we were able to successfully visualize it using a timetable linked with a line chart and bar graph so that the user could see specific trends amongst each line. Due to time constraints, we were not able to implement every station on each line as well as the commuter railway lines, however, for future work/improvements, our project could definitely implement all the commuter rail lines and all the stations on each line. </p>
     
 
     
