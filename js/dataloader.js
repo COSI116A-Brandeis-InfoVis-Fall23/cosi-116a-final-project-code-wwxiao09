@@ -7,11 +7,9 @@ greenStopKeep = ["Lechmere", "Science Park", "North Station", "Haymarket", "Gove
 csv()
   .fromFile(csvFilePath)
   .then((jsonObj) => {
-    //console.log(jsonObj);
     jsonObj = jsonObj.filter(obj => greenStopKeep.includes(obj['stop_name']));
 
     jsonObj.forEach((obj, idx) => {
-        console.log(obj);
 
         delete obj['ObjectId'];
         delete obj['mode'];
@@ -108,7 +106,6 @@ csv()
   const bar_chart_data = JSON.stringify(bar_averages, null, 2);
   fs.writeFileSync('../data/line_chart_data.json', line_chart_data);
   fs.writeFileSync('../data/bar_chart_data.json', bar_chart_data);
-  console.log(averages);
   
   })
   .catch((err) => {

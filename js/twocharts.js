@@ -126,7 +126,6 @@
         { x: "Night", y: calculated_data[0]["NIGHT"]['avgFlow'] }
       ]
     ];
-    console.log(calculated_data);
     // Define line colors
     const lineColors = ["blue", "red", "orange", "green"];
 
@@ -449,7 +448,6 @@
     addTitle(g2, "Average Passenger Flow For the Selected Time Period(s)");
 
     const details = detailData(xLabels1);
-    console.log(details)
 
     // this function appends detail to the visualization, when you hover on one point in the line chart you will see the detailed y-value
     function detailData(timePeriods){
@@ -488,7 +486,6 @@
       .attr("height", d => height - yScale2(d))
       .style("fill", (d, i) => barColors[i])
       .on("mouseover", function(d, i) {
-        console.log("cliked on bars")
         const colorDetails = details[barColors[i]]; // Get details for the clicked color
         const ons = colorDetails.ons;
         const offs = colorDetails.offs;
