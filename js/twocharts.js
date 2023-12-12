@@ -220,22 +220,30 @@
     function highlightPoints(label) {
       table.selectAll("td")
       .style("background-color", "lightblue");
+      // .classed("table-highlighted", false)
+      // .classed("table-non-highlighted", true);
 
       d3.select(this)
       .style("background-color", "yellow");
+      // .classed("table-highlighted", true)
+      // .classed("table-non-highlighted", false);
 
       const index = xLabels1.indexOf(label);
       
       const categoryColor = xLabels1[index];
 
+      // g1.selectAll(".dot")
+      //     .style("fill", d => d.color === categoryColor ? "red" : "#fff");
       g1.selectAll(".dot")
-          .style("fill", d => d.color === categoryColor ? "red" : "#fff");
+        .classed("selected-dot", d => d.color === categoryColor)
+        .classed("non-selected-dot", d => !d.color === categoryColor);
       
       dataLines.forEach((line, lineIndex) => {
         line.forEach(dot => {
           if (dot.x === label) {
             g1.select(`.line-group:nth-child(${lineIndex+7}) .dot:nth-child(${line.indexOf(dot)+2})`)
-              .style("fill", "red");
+              // .style("fill", "red");
+              .classed("selected-dot", true).classed("non-selected-dot", false);
           }
         });
       });
@@ -263,7 +271,8 @@
         table.selectAll("td").style("background-color", "lightblue");
     
         // Reset dot colors
-        g1.selectAll(".dot").style("fill", "#fff");
+        // g1.selectAll(".dot").style("fill", "#fff");
+        g1.selectAll(".dot").classed("selected-dot", false).classed("non-selected-dot", true);
         const updated_average_array = updateBarChartData(xLabels1);
         updateDetailData(xLabels1);
         updateBarChart(updated_average_array, xLabels1);
@@ -273,19 +282,31 @@
       // Get the selected dots based on the x-axis position
       const selectedXValues = [];
     
+      // g1.selectAll(".dot")
+      //   .each(function(d) {
+      //     const dotX = +d3.select(this).attr("cx");
+      //     if (dotX >= selection[0] && dotX <= selection[1]) {
+      //       selectedXValues.push(d.x);
+    
+      //       // Change selected dots color to red
+      //       d3.select(this).style("fill", "red");
+      //     }else {
+      //       // Reset non-selected dots to their original color
+      //       d3.select(this).style("fill", "#fff");
+      //     }
+      //   });
+
       g1.selectAll(".dot")
         .each(function(d) {
-          const dotX = +d3.select(this).attr("cx");
-          if (dotX >= selection[0] && dotX <= selection[1]) {
-            selectedXValues.push(d.x);
-    
-            // Change selected dots color to red
-            d3.select(this).style("fill", "red");
-          }else {
-            // Reset non-selected dots to their original color
-            d3.select(this).style("fill", "#fff");
-          }
-        });
+        const dotX = +d3.select(this).attr("cx");
+        if (dotX >= selection[0] && dotX <= selection[1]) {
+          selectedXValues.push(d.x);
+          d3.select(this).classed("selected-dot", true).classed("non-selected-dot", false);
+        } else {
+          d3.select(this).classed("selected-dot", false).classed("non-selected-dot", true);
+        }
+      });
+
     
       // Highlight corresponding table entries
       table.selectAll("td")
@@ -317,7 +338,8 @@
           const isSelected = values.includes(d.x);
     
           // Change dot color based on selection in table
-          d3.select(this).style("fill", isSelected ? "red" : "#fff");
+          d3.select(this).classed("selected-dot", isSelected)
+          .classed("non-selected-dot", !isSelected);
         });
     
       // Highlight corresponding table entries

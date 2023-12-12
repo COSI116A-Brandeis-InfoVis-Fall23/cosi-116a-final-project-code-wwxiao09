@@ -137,3 +137,20 @@ h1, h2, h3 {
 	padding: 8px; /* Optional: Add padding to the cells for better spacing */
 	background-color: lightblue;
   }
+
+  .selected-dot {
+	fill: blue !important;
+  }
+  
+  /* CSS class for non-selected dots */
+  .non-selected-dot {
+	fill: white !important;
+  }
+
+  .table-highlighted{
+	background-color: green;
+  }
+
+  .table-non-highlighted{
+	background-color: grey;
+  }
