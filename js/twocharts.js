@@ -28,6 +28,7 @@
       .attr("class", "brush")
       .call(brush);
 
+    // generate labels and axies for the line chart
     const xLabels1 = ["Very Early Morning", 'Early AM', 'AM Peak', 'Midday Base', 'Midday School', "PM Peak", "Evening", "Late Evening", "Night"];
     const yLabels1 = [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000];
 
@@ -77,6 +78,7 @@
     // title
     addTitle(g1, "Average Passenger Flow Throughout the Day");
       
+    // connect to data
     const dataLines = [
       [
         { x: "Very Early Morning", y: calculated_data[1]["VERY_EARLY_MORNING"]['avgFlow'] },
@@ -215,16 +217,13 @@
 
     let table = timeTable(xLabels1, highlightPoints);
 
-
-
+    // highlight points that are selected
     function highlightPoints(label) {
       table.selectAll("td")
-      // .style("background-color", "lightblue");
       .classed("table-highlighted", false)
       .classed("table-non-highlighted", true);
 
       d3.select(this)
-      // .style("background-color", "yellow");
       .classed("table-highlighted", true)
       .classed("table-non-highlighted", false);
 
@@ -232,17 +231,15 @@
       
       const categoryColor = xLabels1[index];
 
-      // g1.selectAll(".dot")
-      //     .style("fill", d => d.color === categoryColor ? "red" : "#fff");
       g1.selectAll(".dot")
         .classed("selected-dot", d => d.color === categoryColor)
         .classed("non-selected-dot", d => !d.color === categoryColor);
       
+      // highlight all four dots at the same x-value on x-axis
       dataLines.forEach((line, lineIndex) => {
         line.forEach(dot => {
           if (dot.x === label) {
             g1.select(`.line-group:nth-child(${lineIndex+7}) .dot:nth-child(${line.indexOf(dot)+2})`)
-              // .style("fill", "red");
               .classed("selected-dot", true).classed("non-selected-dot", false);
           }
         });
@@ -251,28 +248,24 @@
       const updated_average_array = [];
 
       calculated_data.forEach(data => {
-        // Assuming label is the key you want to access in each dictionary
         const valueForLabel = data[label.toUpperCase().split(' ').join('_')]['avgFlow']; // Accessing the value for the provided label key
         updated_average_array.push(valueForLabel);
       });
-
 
       // Update g2 based on the updated_average_array
       updateBarChart(updated_average_array, xLabels1);
 
     }
 
-
+    // the first brushing function on the line chart
     function brushed() {
       const selection = d3.event.selection;
     
       if (!selection) {
         // Reset table if no selection
-        // table.selectAll("td").style("background-color", "lightblue");
         table.selectAll("td").classed("table-highlighted", false).classed("table-non-highlighted", true);
     
         // Reset dot colors
-        // g1.selectAll(".dot").style("fill", "#fff");
         g1.selectAll(".dot").classed("selected-dot", false).classed("non-selected-dot", true);
         const updated_average_array = updateBarChartData(xLabels1);
         updateDetailData(xLabels1);
@@ -282,21 +275,8 @@
     
       // Get the selected dots based on the x-axis position
       const selectedXValues = [];
-    
-      // g1.selectAll(".dot")
-      //   .each(function(d) {
-      //     const dotX = +d3.select(this).attr("cx");
-      //     if (dotX >= selection[0] && dotX <= selection[1]) {
-      //       selectedXValues.push(d.x);
-    
-      //       // Change selected dots color to red
-      //       d3.select(this).style("fill", "red");
-      //     }else {
-      //       // Reset non-selected dots to their original color
-      //       d3.select(this).style("fill", "#fff");
-      //     }
-      //   });
 
+      // selected all highlighted points on the line chart
       g1.selectAll(".dot")
         .each(function(d) {
         const dotX = +d3.select(this).attr("cx");
@@ -310,21 +290,14 @@
 
     
       // Highlight corresponding table entries
-      // table.selectAll("td")
-      //   .style("background-color", d =>
-      //     selectedXValues.includes(d) ? "yellow" : "lightblue"
-      //   );
-
       table.selectAll("td")
         .each(function(d) {
         if (selectedXValues.includes(d)){
           d3.select(this).classed("table-highlighted", true).classed("table-non-highlighted", false);
-          // d3.select(this).style("background-color", "yellow")
         } else {
           d3.select(this).classed("table-highlighted", false).classed("table-non-highlighted", true);  
         }
       });
-      
 
       const updated_average_array = updateBarChartData(getSelectedTimePeriod(selectedXValues));
       updateDetailData(getSelectedTimePeriod(selectedXValues));
@@ -352,12 +325,6 @@
           d3.select(this).classed("selected-dot", isSelected)
           .classed("non-selected-dot", !isSelected);
         });
-    
-      // Highlight corresponding table entries
-      // table.selectAll("td")
-      //   .style("background-color", d =>
-      //     values.includes(d) ? "yellow" : "lightblue"
-      //   );
 
       table.selectAll("td")
         .each(function(d) {
@@ -376,11 +343,9 @@
       isBrushing = true;
       selectedValues = []; // Reset selected values on starting a new brush
 
-      // table.selectAll("td").style("background-color", "lightblue");
       table.selectAll("td").classed("table-non-highlighted", true).classed("table-highlighted", false);
 
       // Highlight the cell on mousedown
-      // d3.select(this).style("background-color", "yellow");
       d3.select(this).classed("table-non-highlighted", false).classed("table-highlighted", true);
 
       // Store the value of the cell for brushing
@@ -394,7 +359,6 @@
       .on("mousemove", function(d) {
         if (isBrushing) {
           // Highlight the cell on mousemove within the table
-          // d3.select(this).style("background-color", "yellow");
           d3.select(this).classed("table-non-highlighted", false).classed("table-highlighted", true);
     
           // Store the value of the cell for brushing
@@ -418,7 +382,6 @@
         }
       });
       
-
       
     // Create the second plot
 
@@ -430,7 +393,7 @@
       let sum = 0;
       let count = 0;
       for (let key in data) {
-        if (key !== 'Route_name') { // Assuming 'Route_name' is not part of the sum
+        if (key !== 'Route_name') {
           sum += data[key]['avgFlow'];
           count += 1;
         }
@@ -439,9 +402,11 @@
       average_array.push(average);
     });
 
+    // labels for the bar chart
     const xLabels2 = ["blue line", "red line", "orange line", "green line"];
     const yLabels2 = yLabels1;
 
+    // scale for the bar chart
     const xScale2 = d3.scaleBand()
       .domain(xLabels2)
       .range([0, plotWidth])
@@ -451,6 +416,7 @@
       .domain([0, d3.max(yLabels2)])
       .range([height, 0]);
 
+    // axies for the bar chart
     const xAxis2 = d3.axisBottom(xScale2);
     const yAxis2 = d3.axisLeft(yScale2);
 
@@ -485,6 +451,7 @@
     const details = detailData(xLabels1);
     console.log(details)
 
+    // this function appends detail to the visualization, when you hover on one point in the line chart you will see the detailed y-value
     function detailData(timePeriods){
       const colors = ['green', 'blue', 'orange', 'red'];
       const result = {};
@@ -565,6 +532,7 @@
       return selected;
     }
     
+    // update bar chart to let it show the average passenger flow of the selected time periods
     function updateBarChartData(selectedTime) {
 
       const updatedData = [];
@@ -622,6 +590,7 @@
       .text(title);
     }
 
+    // Added details to visualization, when you hover of the bar chart, you can see the specific avg ons and offs for the specific line
     function updateDetailData(timePeriod){
       newDetail = detailData(timePeriod);
       details.green.ons = newDetail['green']['ons']
