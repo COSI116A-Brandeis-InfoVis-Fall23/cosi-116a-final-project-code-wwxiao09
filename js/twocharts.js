@@ -219,14 +219,14 @@
 
     function highlightPoints(label) {
       table.selectAll("td")
-      .style("background-color", "lightblue");
-      // .classed("table-highlighted", false)
-      // .classed("table-non-highlighted", true);
+      // .style("background-color", "lightblue");
+      .classed("table-highlighted", false)
+      .classed("table-non-highlighted", true);
 
       d3.select(this)
-      .style("background-color", "yellow");
-      // .classed("table-highlighted", true)
-      // .classed("table-non-highlighted", false);
+      // .style("background-color", "yellow");
+      .classed("table-highlighted", true)
+      .classed("table-non-highlighted", false);
 
       const index = xLabels1.indexOf(label);
       
@@ -268,7 +268,8 @@
     
       if (!selection) {
         // Reset table if no selection
-        table.selectAll("td").style("background-color", "lightblue");
+        // table.selectAll("td").style("background-color", "lightblue");
+        table.selectAll("td").classed("table-highlighted", false).classed("table-non-highlighted", true);
     
         // Reset dot colors
         // g1.selectAll(".dot").style("fill", "#fff");
@@ -309,10 +310,20 @@
 
     
       // Highlight corresponding table entries
+      // table.selectAll("td")
+      //   .style("background-color", d =>
+      //     selectedXValues.includes(d) ? "yellow" : "lightblue"
+      //   );
+
       table.selectAll("td")
-        .style("background-color", d =>
-          selectedXValues.includes(d) ? "yellow" : "lightblue"
-        );
+        .each(function(d) {
+        if (selectedXValues.includes(d)){
+          d3.select(this).classed("table-highlighted", true).classed("table-non-highlighted", false);
+          // d3.select(this).style("background-color", "yellow")
+        } else {
+          d3.select(this).classed("table-highlighted", false).classed("table-non-highlighted", true);  
+        }
+      });
       
 
       const updated_average_array = updateBarChartData(getSelectedTimePeriod(selectedXValues));
@@ -343,10 +354,19 @@
         });
     
       // Highlight corresponding table entries
+      // table.selectAll("td")
+      //   .style("background-color", d =>
+      //     values.includes(d) ? "yellow" : "lightblue"
+      //   );
+
       table.selectAll("td")
-        .style("background-color", d =>
-          values.includes(d) ? "yellow" : "lightblue"
-        );
+        .each(function(d) {
+        if (values.includes(d)){
+          d3.select(this).classed("table-highlighted", true).classed("table-non-highlighted", false);
+        } else {
+          d3.select(this).classed("table-highlighted", false).classed("table-non-highlighted", true);  
+        }
+      });
     }
 
     // Attach mousedown event to table cells for starting the brushing
@@ -356,10 +376,12 @@
       isBrushing = true;
       selectedValues = []; // Reset selected values on starting a new brush
 
-      table.selectAll("td").style("background-color", "lightblue");
+      // table.selectAll("td").style("background-color", "lightblue");
+      table.selectAll("td").classed("table-non-highlighted", true).classed("table-highlighted", false);
 
       // Highlight the cell on mousedown
-      d3.select(this).style("background-color", "yellow");
+      // d3.select(this).style("background-color", "yellow");
+      d3.select(this).classed("table-non-highlighted", false).classed("table-highlighted", true);
 
       // Store the value of the cell for brushing
       selectedValues.push(d);
@@ -372,7 +394,8 @@
       .on("mousemove", function(d) {
         if (isBrushing) {
           // Highlight the cell on mousemove within the table
-          d3.select(this).style("background-color", "yellow");
+          // d3.select(this).style("background-color", "yellow");
+          d3.select(this).classed("table-non-highlighted", false).classed("table-highlighted", true);
     
           // Store the value of the cell for brushing
           if (!selectedValues.includes(d)) {

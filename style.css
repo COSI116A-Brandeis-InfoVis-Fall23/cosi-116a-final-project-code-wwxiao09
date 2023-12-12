@@ -135,7 +135,7 @@ h1, h2, h3 {
   #table-container table td {
 	border: 1px solid #000; /* Add a solid black border to table cells */
 	padding: 8px; /* Optional: Add padding to the cells for better spacing */
-	background-color: lightblue;
+	/* background-color: lightblue; */
   }
 
   .selected-dot {
@@ -148,9 +148,9 @@ h1, h2, h3 {
   }
 
   .table-highlighted{
-	background-color: green;
+	background-color: green !important;
   }
 
   .table-non-highlighted{
-	background-color: grey;
+	background-color: grey !important;
   }
